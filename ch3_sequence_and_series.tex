@@ -1,0 +1,341 @@
+\chapter{Sequence and Series}
+
+\section{Sequences}
+
+\begin{definition}
+	In a metric space $(X,d)$, a sequence $\{p_n\}$ converges to $p$ if $\forall_{\epsilon>0}\exists_{N} \text{ s.t. } n\ge N \implies d(p_n,p)<\epsilon$.\\
+	We write $\lim_{n\to\infty} p_n = p$ or $p_n \to p$.
+\end{definition}
+
+
+If $\{p_n\}$ does not converge to any $p$ then it is said to diverge.
+
+
+
+
+
+
+\begin{theorem}
+	\label{thm:3.3}
+	If ${s}_{n}$ and ${t}_{n}$ are sequences in $\C$ with ${s}_{n} \to s$ and ${t}_{n} \to t$, then the following hold:
+	\begin{enumerate}
+		\item ${s}_{n} + {t}_{n} \to s + t$
+		\item $c s_n \to cs$, $c+s_n\to c+s$ for any $c\in \C$
+		\item $s_n t_n\to st$
+		\item $\frac{1}{s_n}\to \frac{1}{s}$ if $s\neq 0$
+	\end{enumerate}
+\end{theorem}
+
+\begin{lemma}[Squeeze Lemma]
+	\label{lem:3.4}
+	In $\R$, if $\forall_{n \in \N}: 0 \le x_n \le s_n$ and $\lim_{n\to \infty }s_n \to 0$, then $\lim_{n\to \infty} x_n = 0$.
+	\begin{proof}
+		Let $\epsilon > 0$. Choose $N$ such that $n\ge N \implies 0\le s_n < \epsilon$. Then $0 \le x_n \le s_n < \epsilon$ for $n\ge N$, so $x_n \to 0$.
+	\end{proof}
+\end{lemma}
+
+\begin{theorem}
+	\label{thm:3.20}
+	\begin{enumerate}[label=(\alph*)]
+		\item If $p>0$ then $\frac{1}{n^{p}} \to 0$.
+		      \begin{proof}
+			      Let $\epsilon>0$. Choose $N$ such that $\frac{1}{N^{p}} <\epsilon$; i.e., $N>\frac{1}{\epsilon^{\frac{1}{p}}}$. Then for $n\ge N$, $\frac{1}{n^{p}}  \le \frac{1}{N^{p}} <\epsilon$.
+		      \end{proof}
+		\item If $p>0$ then $\sqrt[n]{p} \to 1$.
+		      \begin{proof}
+			      $p=1$ is obvious.\\
+			      Suppose $p>1$. Let $x_n=\sqrt[n]{p} -1>0$.
+			      Want to show $x_n \to 0$.\\
+			      Since $(x_n +1)^{n}$, we have $p=(x_n+1)^{n}=\sum_{k=0}^{n}{\binom{n}{k}x_n ^{k}>\binom(n,1) x_n'=nx_n}$. Therefore, $x_n \le  \frac{p}{n}$, so $x_n \to 0$ by the Squeeze Lemma.
+			      \\
+			      Suppose $p \in (0,1)$. Let $q=\frac{1}{p}>1$. Then $\sqrt[n]{q} \to 1$ by the previous case. By ~\ref{thm:3.3}, $\sqrt[n]{p} = \frac{1}{\sqrt[n]{q}} \to 1$.
+		      \end{proof}
+		\item $\sqrt[n]{n}\to 1$
+		      \begin{proof}
+			      Let $x_n=\sqrt[n]{n}-1>0$, for $n\ge 2$.
+			      $n=(x_n+1)^{n}=\sum_{k=0}^{n}{\binom{n}{k}(x_k)^{k}}>\binom(n,2){x_n}^{2}=\frac{n(n-1)}{2} x_n ^2$. Therefore, $x_n \le \sqrt{\frac{2}{n-1}}$.
+		      \end{proof}
+		\item If $p>0$ and $\alpha \in \R$, then $\frac{n^{\alpha}}{(1+p)^{n}}\to 0$; i.e., Exponentials beat powers.
+		      \begin{proof}
+			      We want an upper bound on $\frac{n^{\alpha}}{(1+p)^{n}}$, so seek a lower bound on $(1+p)^{n}$.\\
+			      $(1+p)^{n}=\sum_{k=0}^{n}\binom{n}{k}p^{k}>\binom{n}{k}p^{k}$ for $k\le n$\\
+			      $(1+p)^{n}>\binom{n}{k}p^{k}=\frac{n(n-1) \cdots (n-k+1)}{k!}p^{k}$.
+			      Then for $k \le \frac{n}{2}$,  $\binom{n}{k}p^{k} > (\frac{n}{2})^{k}\frac{p^{k}}{k!}$.
+			      Therefore, $\frac{n^{\alpha}}{(1+p)^{n}}<(\frac{2}{p})^{k} k! \frac{1}{n^{k-\alpha}}$. Let $k_0 \in \Z \text{ s.t. } k>\alpha$. Then for $n\ge 2 k_0$, RHS $\to 0$ by (a).
+			      \item If $|x| <1 $ then $x^{n}\to 0$.
+			      \begin{proof}
+				      $|x^{n}-0| = |x|^{n}$, so $x^{n}\to 0 \Leftrightarrow |x|^{n}\to 0$ and $|x|^{n}=\frac{n_0}{(\frac{1}{|x|})^{n}}\to 0$ by (d) with $\alpha=0$ and $1+p=\frac{1}{|x|}>1$, so $p=\frac{1}{|x|}-1>0$.
+			      \end{proof}
+		      \end{proof}
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+	\label{thm:3.2}. Let $\{p_n\}$ be a sequence in $(X,d)$.
+	\begin{enumerate}[label=(\alph*)]
+		\item $p_n\to p \Leftrightarrow \forall_{r >0}: N_r(p)$ contains all but finitely many $p_n$.
+		      \begin{proof}
+			      $\forall_{n \ge N}: p_n \in N_r(p)$
+		      \end{proof}
+		\item If $p_n\to p$ and $p_n \to p'$ then $p=p'$.
+		      \begin{proof}
+			      $d(p,p')\le d(p_n,p)+d(p_n,p')$ for all $n$.
+			      Fix $\epsilon$. Choose $N$ such that $d(p_n,p)<\frac{\epsilon}{2}$ and $d(p_n,p')<\frac{\epsilon}{2}$ for $n\ge N'$. Then $d(p,p')< \epsilon$.
+			      Then for $n\ge \max\{N,N'\}$, $d(p,p')< \epsilon$. This is true for all $\epsilon>0$, so $d(p,p')=0$.
+		      \end{proof}
+		\item If $\{p_n\}$ converges, then ${p}_{n} $ is bounded, in a sense that $\exists_{M>0,q \in X} \text{ s.t. } d(p_n,q)\le M$ for all $n$.
+		      \begin{proof}
+			      If $p_n \to p$, then $\exists N \text{ s.t. } d(p_n,p)<1 $ for all $n\ge N$. Thus, $\forall_{n \ge 1}: d(p_n,p)\le \max\{1,d(p,p_1),\ldots ,d(p,p_{N-1})\}=M$
+		      \end{proof}
+		\item If $E \subset X$ has a limit point $p$, then $\exists_{{p}_{n} \in E} \text{ s.t. } p_n \to p$.
+		      \begin{proof}
+			      We need to choose $p_n \in E$ s.t. $d(p,p_n)<\frac{1}{n}$.
+			      Let $\epsilon>0$. Then $d(p,p_n)<\epsilon$ if $n>\frac{1}{\epsilon}$
+		      \end{proof}
+	\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+	\label{def:3.5}
+	Given ${p}_{n}, n_1<n_2<n_3<\ldots $, we say ${p}_{n_i}=(p_{n_1},p_{n_2},\ldots )$ is a subsequence of ${p}_{n}$.
+\end{definition}
+
+\begin{lemma}
+	$p_n\to p \Leftrightarrow \text{every subsequence of $\{p_n\}$ converges to $p$} $
+
+	\begin{proof}
+		Look at assignment 6
+	\end{proof}
+\end{lemma}
+
+
+\begin{theorem}
+	\label{thm:3.6}
+	\begin{enumerate}
+		\item $\{p_n\}$ in $X$, $X$ compact, then $\exists$ convergent subsequence.
+		      \begin{proof}
+			      Let $E=\text{range of} \{p_n\} $. If $E$ is finite, then $\exists {p\in X}$ and $n_1<n_2<\ldots \text{ s.t. } p_n=p \text{ for } \forall i$. This subsequence converges to $p$. If $E$ is infinite then by Theorem~\ref{thm:2.37}, $E$ has a limit point $p \in X$; i.e., every neighborhood of $p$ contains infinitely many points of $E$. Choose $n_1$ s.t. $d(p,p_{n_1})<1$.
+
+		      \end{proof}
+
+		\item $\{ p_n \} $ in $\R^{k}$, bounded, then $\exists$ convergent subsequence.
+		      \begin{proof}
+			      Choose a $k$-cell $I$ that contains $\{p_{n}\} $. $I$ is compact. Apply (a).
+
+		      \end{proof}
+
+	\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Cauchy Sequence]
+	$\{p_n\}$ is a Cauchy sequence in $(X,d)$ if $\forall{\epsilon}: \exists_{N \in \N} \text{ s.t. } d(p_{m},p_{n})<\epsilon \forall m,n\ge N$.
+\end{definition}
+\begin{definition}
+	\label{def:3.9}
+	For $E \subset X$, $E \neq \emptyset$, we define $\text{diam } E=\sup{\{d(p,q): p,q \in E\}}$. $\text{diam } E=\infty$ if the set is not bounded above.
+	\begin{example}
+		For a sequence ${p_{n}}$ in $X$, let $E_{n}=\{p_N,p_{N+1},\ldots \}$. Then $\{p_{n}\}$ is a Cauchy sequence iff $\lim_{N\to \infty }{\text{diam }E_N}=0$.
+	\end{example}
+
+\end{definition}
+\begin{theorem}
+	\label{thm:3.11}
+	\begin{enumerate}
+		\item
+		      \label{thm:3.11a}
+		      If $p_{n}\to p$ then $\{p_{n}\} $ is a Cauchy sequence.
+		\item If $X$ is a compact metric space and $\{p_{n}\}$ in $X$ is a Cauchy sequence, then $\exists_{p \in  X} \text{ s.t. } p_{n}\to p$.
+		\item In $R^{K}$ every Cauchy sequence converges.
+	\end{enumerate}
+	\hfill
+	\begin{proof}
+		\item
+		Let $\epsilon>0$. Choose $N$ s.t., $d(p_{n},p)<\epsilon/2$ if $n\ge N$. Then for $m,n\ge N$, $d(p_m,p_{n})\le d(p_{n},p)+d(p,p_n)<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon$.
+		\item
+		Suppose $\{p_n\} $ is Cauchy. Let $E_{N}=\{p_{N},P_{N+1},\ldots \} $. Then $\overline{E_{N}}$ is closed, hence compact.
+		Also $\overline{E_{N}} \supset \overline{E_{N+1}}$ and $\lim_{N\to \infty }{\text{diam }\overline{E_N}}=0$ (use Theorem 3.10(a) to see $\text{diam }\overline{E_N}=\text{diam }E_N $)
+		By theorem 3.10(b), $\exists! {p \in \bigcap_{N=1}^{\infty } \overline{E_N}}$. Claim: $p_{n}\to p$.\\
+		Proof of the claim: Let $\epsilon>0$. Choose $N_0$ s.t.diam $\overline{E_{N_0}}<\epsilon $, so $d(p,q)<\epsilon \forall g \in \overline{E_{N_0}}$, and hence $\forall{g \in N_0}$; i.e., $d(p,p_{n})<\epsilon$ if $n\ge N_0$.
+
+		Let $\epsilon>0$. Choose $N$ s.t., $d(p_{n},p)<\epsilon/2$ if $n\ge N$. Then for $m,n\ge N$, $d(p_m,p_{n})\le d(p_{n},p)+d(p,p_n)<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon$.
+		\item Suppose $\{p_{n}\} $ in $\R^{k}$ is Cauchy. Cauchy sequences are bounded in any metric space. Therefore, $\exists$ $k$-cell $I$, which is compact, containing $\{p_{n}\}$. Then (b) applies
+	\end{proof}
+
+\end{theorem}
+\begin{note}
+	The converse of Theorem~\ref{thm:3.11}(a) does not hold in general.
+	\begin{example}
+		$X=\Q$ has a Cauchy sequence with no limit in $\Q$. (see assignment 6).
+		\textit{Converse does hold if $X$ is compact.}
+	\end{example}
+\end{note}
+
+\begin{theorem}
+	\begin{enumerate}
+		\item $\text{diam }\overline{E} = \text{diam } E$
+		\item If $K_{n} \subset X$, $K_{n} \neq \emptyset$, $K$ compact, $K_{n} \supset K_{n+1} \forall n \text{ and } \text{ if } \lim_{n\to \infty }{\text{diam }K_n}=0$, then $\bigcap_{n=1}^{\infty }K_{n} $ is a single point.
+	\end{enumerate}
+	\hfill
+	\begin{proof}
+		\begin{enumerate}
+			\item
+			      $E \subset \overline{E} \implies \text{diam }E \le \text{diam }\overline{E}$. For the opposite inequality, let $\epsilon>0, p,q \in \overline{E}$,. Choose $p',q' \in E$ s.t. $d(p,p') < \epsilon, d(q,q')<\epsilon$. Then $d(p,q)\le d(p,p')+d(p',q')+d(q',q)<\epsilon+\epsilon=2 \epsilon$. diam $\overline{E} \le \text{diam }E+2 \epsilon $. Since $\epsilon$ is arbitrary, $\text{diam }\overline{E}\le \text{diam }E$.
+
+			\item
+			      Let $K=\bigcap_{n=1}^{\infty} K_{n}$.
+			      By Theorem 2.36, $K\neq \emptyset$. Since $K \subset K_{n} \forall n$, diam $k \le \text{diam } K_{n} \forall n$ , so $\text{diam }K=0$.
+			      Therefore, $d(p,q)=0 \forall {p,q \in K}$, so $K$ is a simple point.
+		\end{enumerate}
+	\end{proof}
+
+\end{theorem}
+
+\begin{definition}[Complete Metric Space]
+	A metric space $(X,d)$ is complete if every Cauchy sequence in $X$ converges to a point in $X$.
+\end{definition}
+
+\begin{example}
+	\begin{enumerate}
+		\item $X$ compact $\implies X$ complete.
+		\item $\R^{k}$ is complete, so is $\C$.
+		\item $\Q$ is not complete. (see assignment 6)
+		\item See assignment 6 for reference to completion of a metric space.
+	\end{enumerate}
+\end{example}
+
+We've seen that convergent sequences are bounded. $p_{n}=(-1)^{n}$ shows the converse if false.
+However the converse does hold for monotonic sequences.
+\begin{definition}[Monotone]
+	\begin{itemize}
+		\item
+		      A sequence $\{s_n\}$ in $\R$ is monotonically increasing if $s_{n}\le s_{n+1} \forall n$.
+		\item A sequence $\{s_n\}$ in $\R$ is monotonically decreasing if $s_{n}\ge s_{n+1} \forall n$.
+	\end{itemize}
+\end{definition}
+
+\begin{theorem}
+	\label{thm:3.14}
+	A monotone sequence in $\R$ converges if and only if it is bounded.
+	\begin{proof}
+		\begin{description}
+			\item[$\Rightarrow$] all convergent sequences are bounded in any metric space.
+			\item [$\Leftarrow$]
+			      \begin{description}
+				      \item[Increasing case]
+				            Let $\{s_n\}$ be monotonically increasing and $s_n \le M \forall n$.
+				            Let $s=\sup \{ s_n:n \in \N\}$. Then $s_{n} \le s \forall n$. Let $\epsilon>0$. $\exists N $ s.t. $s-\epsilon<s_N\le s$.
+				            But then $s-\epsilon<s_N\le s_{N+1}\le s_{N+2}\ldots \le s$, so $|s-s_n|<\epsilon \forall n\ge N$, and therefore $s_{n}\to s$.
+			      \end{description}
+		\end{description}
+	\end{proof}
+\end{theorem}
+
+
+\begin{definition}[Infinite Limits]
+	\label{def:3.15}
+	We say
+	\begin{itemize}
+		\item
+		      $s_{n}\to \infty $ if $\forall_{M \in \R}: \exists_{N} \text{ s.t. } s_n\ge M \forall_{n \in N}$.
+
+		\item $s_{n}\to -\infty $ if $\forall_{M \in \R}: \exists_{N} \text{ s.t. } s_n\le M \forall_{n \in N}$.
+	\end{itemize}
+\end{definition}
+
+\begin{definition}
+	\label{def:3.16}
+	Let $\{ {s}_{n}\}$ be a sequence in $\R$. We define $\limsup_{n\to \infty }{s_{n}}=\overline{\lim_{n\to \infty } }s_n=\inf_{n\ge 1}\{\sup_{m\ge n}\{s_m\}\}=\lim_{n\to \infty }{\sup_{m\ge n}\{s_m\}}$.\\
+	$\liminf_{n\to \infty }{s_{n}}=\underline{\lim_{n\to \infty} }s_n=\inf_{n\ge 1}\{\inf{m\ge n}\{s_m\}\}=\lim_{n\to \infty }{\inf{m\ge n}\{s_m\}}$.
+	\begin{note}
+		Alternate definition; see ass 7 for equivalence
+	\end{note}
+	\begin{remark}
+		\begin{enumerate}
+			\item
+			      If $a_{n}\le b_{n} \forall n$ and $a_{n}\to a \text{ and } b_{n}\to b$, then $a\le b$.
+			\item $\liminf_{n\to \infty }s_n \le \limsup_{n\to \infty }s_{n}$
+		\end{enumerate}
+	\end{remark}
+\end{definition}
+
+\begin{example}
+	\begin{enumerate}
+		\item $s_{n}=(-1)^{n}(1+\frac{1}{n^2})$
+		      $1\le \sup_{m\ge n}{s_{m}}\le 1+\frac{1}{n^2}$, so $\limsup_{n\to \infty }{s_{n}}=1$. Similarly, $\liminf_{n\to \infty }{s_{n}}=-1$
+		\item If $\{ {s}_{n}\}$ has no upper bound, then $\sup_{m\ge n}{s_m}=\infty $ and in this case we say $\limsup_{n\to \infty}{s_{n}}=\infty $; e.g.,
+		      \[
+			      s_n=
+			      \begin{cases}
+				      n  & n\text{ odd }  \\
+				      -n & n\text{ even }
+			      \end{cases}
+		      \]
+		      has
+		      $\limsup_{n\to \infty}{s_{n}}=\infty $,
+		      $\liminf_{n\to \infty}{s_{n}}=-\infty $
+	\end{enumerate}
+\end{example}
+
+\begin{lemma}
+	$\limsup_{n\to \infty}{s_{n}}= \liminf_{n\to \infty}{s_{n}}=L \Leftrightarrow s_{n}\to L$.
+	\begin{proof}[$L$ finite]\hfill
+		\begin{description}
+			\item[$\implies $] This follows from $\inf_{m\ge n}{s_m}\le s_{n}\le \sup_{m\ge n}{s_m}$. $\lim_{n\to \infty}{\inf_{m\ge n}{s_m}}=\liminf_{n\to \infty}{s_{n}}$, and $\lim_{n\to \infty}{\sup_{m\ge n}{s_m}}=\limsup_{n\to \infty}{s_{n}}$.
+			      Therefore, $\lim_{n\to \infty}{s_{n}}=L$.
+			\item[$\impliedby$]
+			      If $s_{n}\to L$, then $\forall_{\epsilon > 0}: \exists_{N} \text{ s.t. } s_{m} \in [L-\epsilon,L+\epsilon] \forall m\ge N $.
+			      Therefore, $\forall_{n \ge  N}: L-\epsilon\le \inf_{m\ge N}s_m\le \inf_{m\ge n}s_m \le \sup_{m\ge n}s_m\le \sup_{m\ge N}s_m\le L+\epsilon$.
+			      Let $n\to \infty$: $L-\epsilon\le \liminf_{n\to \infty}{s_{n}}\le \limsup_{n\to \infty}{s_n}\le L+\epsilon$. Since $\epsilon$ is arbitrary, so $L\le \liminf_{n\to \infty}{s_{n}}\le \limsup_{n\to \infty}{s_{n}}\le L$.
+		\end{description}
+	\end{proof}
+\end{lemma}
+
+
+\section{Series}
+\begin{definition}[Series]
+	Let $\{a_{n}\}$ be a sequence in $\C$.
+	Form a new sequence $\{ {s}_{n}\}$, the sequence of partial sums, by $s_{n}=a_1+a_2+\ldots +a_{n}=\sum_{k=1}^{n}{a_{k}}$. If $s_n \to s$, we say \textbf{ the series $\sum_{k=1}^{\infty }{a_{k}}$ converges} and that $\sum_{k=1}^{\infty }{a_{k}}=s$. If $\{ {s}_{n}\}$ diverges then we say $\sum_{k=1}^{\infty }{a_{k}}$ diverges.
+\end{definition}
+
+\begin{theorem}
+	$\sum_{n \in \N}{a_{n}}$ converges if and only if $\exists_{\epsilon >0}: \exists N \text{ s.t. } |\sum_{k=m}^{n}{a_{k}}| <\epsilon \forall{n\ge m\ge  N}$.
+	\begin{proof}
+		$\sum_{n}{a_{n}}$ converges $\Leftrightarrow $ $\{ {s}_{n}\}$ converges $\implies  $ $\{ {s}_{n}\}$ is a Cauchy sequence. Use $s_{n}-s_{m-1}=\sum_{k=m}^{n}{a_k}$.
+	\end{proof}
+\end{theorem}
+\begin{corollary}
+	\label{cor:3.23}
+	If $\sum_{n}{a_{n}}$ converges then $a_{n}\to 0$.
+	\begin{proof}
+		Take $m=n$ in Theorem 3.22. $\sum_{n}{a_{n}}$ converges $\implies \forall_{\epsilon > 0}: \exists_{N} \text{ s.t. } |a_{n}| <\epsilon $ if $n\ge N$.
+	\end{proof}
+	\begin{remark}
+		$n$-th term test for divergence: If $a_{n}\not\to 0$ then $\sum_n{a_{n}}$ diverges.
+		\begin{example}
+			$\sum_{n=1}^{\infty }{\frac{n}{n+1}}$ diverges because $\frac{n}{n+1}\to 1\neq 0$.
+		\end{example}
+		Converse to Corollary~\ref{cor:3.23} is false! E.g., $\sum_{n}{\frac{1}{n}}$ diverges but $\frac{1}{n}\to 0$.
+	\end{remark}
+\end{corollary}
+
+\begin{theorem}
+	\label{thm:3.24}
+	If $a_{n}\ge 0$ , then $\sum_{n}{a_{n}}$ converges if and only if $\{ {s}_{n}\}$ is bounded.
+	\begin{proof}
+		$\{ {s}_{n}\}$ is monotone increasing, so by Theorem~\ref{thm:3.14}, it converges if and only if it is bounded.
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[Comparison Test]
+	\label{thm:3.25}
+	\begin{enumerate}[label=(\alph*)]
+		\item If $|a_{n}| \le c_n \forall n\ge N_0$ and $\sum_{n}{c_{n}}$ converges, then $\sum_{n}{a_{n}}$ converges.
+		\item If $a_{n}\ge d_{n}\ge 0 \forall n\ge N_0$ and if $\sum_{n}{d_n}$ diverges, then $\sum_{n}{a_{n}}$ diverges.
+	\end{enumerate}
+\end{theorem}
+
+
+
+
+
+
