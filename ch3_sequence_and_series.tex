@@ -330,12 +330,70 @@ However the converse does hold for monotonic sequences.
 	\label{thm:3.25}
 	\begin{enumerate}[label=(\alph*)]
 		\item If $|a_{n}| \le c_n \forall n\ge N_0$ and $\sum_{n}{c_{n}}$ converges, then $\sum_{n}{a_{n}}$ converges.
+		      \begin{proof}
+			      Suppose $|a_{n}|\le c_{n} \forall n\ge N_0$ and $\sum_{n}^{}{c_{n}}$ converges. Let $\epsilon>0$. By theorem 3.22, $\exists N \text{ s.t. } \sum_{k=m}^{n}{c_{k}}< \epsilon $ if $n\ge m\ge N$. Can take $N\ge N_0$. Then $|N\ge N_0|$. $|\sum_{k=m}^{n}{a_{k}}|\le \sum_{k=m}^{n}{|a_{k}|}\le \sum_{k=m}^{n}{c_k}<\epsilon$ if $n\ge m\ge N$. By theorem 3.22 again, $\sum_{n}{a_{n}}$ converges.
+		      \end{proof}
 		\item If $a_{n}\ge d_{n}\ge 0 \forall n\ge N_0$ and if $\sum_{n}{d_n}$ diverges, then $\sum_{n}{a_{n}}$ diverges.
+		      \begin{proof}
+			      This follows from (a): if $\sum_{n}{a_{n}}$ converges then $\sum_{n}{d_{n}}$ converges. Thus it's contrapositive, (b) is true.
+		      \end{proof}
 	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Geometric Series]
+	\label{thm:3.26}
+	$\sum_{n=0}^{\infty }{x^{n}}=
+		\begin{cases}
+			\frac{1}{1-x}   & \text{if $-1<x<1$} \\
+			\text{diverges} & \text{otherwise}
+		\end{cases}
+	$
+	\begin{proof}
+		Let $S_n=1+x+x^2+\cdots +x^{n}$, $xS_n= x + x^2+ \cdots x^{n}+x^{n+1}$. Then
+		\[
+			S_n-xS_n=1-x^{n+1} \implies S_n=\frac{1-x^{n+1}}{1-x}
+		\]
+		If $|x|<1 (\Leftrightarrow -1<x<1)$, then $x^{n+1}\to 0$ and $S_n\to \frac{1}{1-x}$. If $|x|\ge 1$, then $x^{n+1}$ does not converge to 0, so $\sum_{n=0}^{\infty}{x^{n}}$ diverges.
+	\end{proof}
 \end{theorem}
 
 
 
+\begin{theorem}
+	\label{thm:3.27}
+	Suppose $a_1\ge a_2\ge a_3\ge \cdots \ge 0$. Then $\sum_{n=1}^{\infty}{a_{n}}$ converges $\Leftrightarrow $ $\sum_{k=1}^{\infty}{2^{k}a_{2^{k}}}$ converges.
+	\begin{proof}
+		\begin{description}
+			\item[$(\impliedby )$] We show that if $\sum_{n}{a_{n}}$ then $\sum_{k}{2^{k}a_{2^{k}}}$ diverges.
+			      For this, note that $a_1+a_2+\ldots +a_{n}\le a_1+(a_2+a_3)+(a_4+a_5+a_6+a_7)+\cdots (a_{2^{k}}+a_{2^{k}+1}+\cdots + a_{2^{k+1}-1})$ if $2^{k+1}>n$.\\
+			      $a_1+a_2 \cdots + a_{n} \le a_1+ 2 a_2 + 4 a_4 + \cdots + 2^{k}a_{2^{k}}$.
+			      LHS unbounded as $n\to \infty $, so RHS is also unbounded as $k \to \infty $.
 
+			\item[($\implies$)]
+			      $a_1+a_2+a_3+\cdots+a_{n}\ge a_1+a_2+(a_3+a_4)+(a_5+a_6+a_7+a_8)+\cdots +(a_{2^{k-1}+1}+a_{2^{k-1}+2}+ \cdots + a_{2^{k}})$ if $2^{k}\le n$.
+			      $a_1+a_2+(a_3+a_4)+(a_5+a_6+a_7+a_8)+\cdots +(a_{2^{k-1}+1}+a_{2^{k-1}+2}+ \cdots + a_{2^{k}})\ge a_1+a_2 + 2a_4 + 4a_8 +\cdots + 2^{k-1}a_{2^{k}}\ge
+				      \frac{1}{2}(a_1+2a_2+4a_4+ \cdots +2^{k}a_{2^{k}})
+			      $.
+			      If $\sum_{n}{a_{n}}$ converges, then LHS is bounded for all $n$ so RHS is bounded for all $k$. Hence RHS converges since it is monotone.
+		\end{description}
+	\end{proof}
+\end{theorem}
 
+\begin{theorem}[$p$-series]
+	\label{thm:3.28}
+	$\sum_{n=1}^{\infty }{\frac{1}{n^{p}}}$ converges if $p>1$ and diverges if $p\le 1$.
+	\begin{proof}
+		For $p\le 0$, $\frac{1}{n^{p}} \not \to 0$, so series diverges.
+		For $p>0$, $\frac{1}{n^{p}}$ is decreasing, so $\sum_{n=1}{\frac{1}{n^{p}}}$ converges iff $\sum_{k}{2^{k} \cdot \frac{1}{(2^{k})^{p}}}$ converges.
+		But $\sum_{k}{2^{k}\cdot \frac{1}{(2^{k})^{p}}}=\sum_{k}{(\frac{1}{2^{p-1}})^{k}}$ converges iff $\frac{1}{2^{p-1}}<1(\Leftrightarrow p-1>0)$, which is equivalent to $p>1$.
+	\end{proof}
+\end{theorem}
+\begin{theorem}
+	\label{thm:3.29}
+	$\sum_{n=3}^{\infty }{\frac{1}{n(\log{n})^{p}}}$ converges if $p>1$ and diverges if $p\le 1$. ($\log$ is to base $e$.)
+	\begin{proof}
+		If $p\le 0$, then $\frac{1}{n (\log{n})^{p}}\ge \frac{1}{n}$, so $\sum_{n}{\frac{1}{n(\log{n})^{p}}}$ diverges by the comparison test.
+		If $p>0$ then $\frac{1}{n(\log{n})^{p}}$ decreases since $\log{n}$ increases. By theorem~\ref{thm:3.27}, $\sum_{n}{\frac{1}{n(\log{n})^{p}}}$ converges $\Leftrightarrow \sum_{k}{2^{k} \cdot \frac{1}{2^{k}(\log{2^{k}})^{p}}}$ converges  $\Leftrightarrow $  $\sum_{k}{\frac{1}{(\log{2})^{p}} \cdot \frac{1}{k^p}}$ converges $\Leftrightarrow $ $p>1$
+	\end{proof}
+\end{theorem}
 
