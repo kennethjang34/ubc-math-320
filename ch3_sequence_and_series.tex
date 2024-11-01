@@ -397,3 +397,86 @@ However the converse does hold for monotonic sequences.
 	\end{proof}
 \end{theorem}
 
+\begin{definition}[e]
+	$e:= \sum_{n=0}^{\infty}{\frac{1}{n!}}$.
+	\begin{remark}
+		\begin{description}
+			\item[Convergence]
+			      $\frac{1}{n!}=\frac{1}{(n(n-1)(n-2)\cdots 3\cdot 2 \cdot 1)}\le \frac{1}{2\cdot 2\cdot 2 \cdot 2 \cdots \cdot 2 \cdot 1}=\frac{1}{2^{n-1}}$. Therefore, $S_n= \sum_{k=0}^{n}{\frac{1}{k!}}\le 1+\sum_{k=1}^{n}{\frac{1}{2^{k-1}}}<1+\sum_{k=1}^{\infty }{\frac{1}{2^{k-1}}}=1+\frac{1}{1- 1/2}=3$. Hence, $e \le 3$.
+			\item[Rate of Convergence]
+			      $0<e-S_n=\sum_{k=n+1}{\infty}{\frac{1}{k!}}< \sum_{k=n+1}^{\infty}{\frac{1}{(n+1)^{k-n+1}}\cdot  \frac{1}{(n+1)!}}= \frac{1}{(n+1)!} \sum_{k=n+1}{\infty} \frac{1}{(n+1)^{k-(n+1)}}=\frac{1}{(n+1)!} \cdot \frac{1}{1-1/(n+1)}=\frac{1}{(n!)\cdot n}$.
+
+		\end{description}
+	\end{remark}
+\end{definition}
+
+\begin{theorem}
+	\label{thm:3.32}
+	$e \not\in \Q$.
+	\begin{proof}
+		For contradiction, suppose $e=\frac{p}{q}, p,q \in \N$.
+		Then  $0<e-S_q<\frac{1}{q\cdot q!}$, so $0<q!\cdot e - q! \cdot S_q< \frac{1}{q}$. If we show $q! \cdot e - q! \cdot S_q \in \Z$, then we'll have a contradiction.
+		But $q! \cdot e - q! \cdot S_q=q! \cdot \frac{p}{q} - \sum_{k=0}^{q}{\frac{q!}{k!}}$. Because $q! \cdot \frac{p}{q} \in \N$ and $\sum_{k=0}^{q}{\frac{q!}{k!}} \in \N$, the difference of them, $q! \cdot e - q! \cdot S_q \in \Z$, thus a contradiction.
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}
+	\label{thm:3.31}
+	$e= \lim_{n\to \infty}{(1+\frac{1}{n})^{n}}$.
+	\begin{proof}
+		Let $t_n=(1+\frac{1}{n})^{n}$. Then $t_n= \sum_{k=0}^{n}{\binom{n}{k} \cdot \frac{1}{n^{k}}}= \sum_{k=0}^{n}{\frac{1}{k!} \cdot (\frac{n}{n} \cdot \frac{n-1}{n} \cdots \frac{n-k+1}{n})} \le S_n$. So $\limsup_{n\to \infty}{t_n}\le \limsup_{n\to \infty}{S_n}=\lim_{n\to \infty}{S_n}=e$.
+		On the other hand, for fixed $m$ and $n\ge m$, $t_n \ge \sum_{k=0}^{m}{\binom{n}{k} \cdot \frac{1}{n^{k}}}= \sum_{k=0}^{m}{\frac{1}{k!} (1-\frac{1}{n}) (1- \frac{2}{n}) \cdots \cdot (1-\frac{k-1}{n})}$. Let $n\to \infty$ with $m$ fixed.
+		$\liminf_{n\to \infty}{t_n}\ge \sum_{k=0}^{m}{\frac{1}{k!} \cdot_1}=S_m$. This is true for any $m$.
+		Now let $m\to \infty$. $\liminf_{n\to \infty}{t_{n}}\ge  \limsup_{m\to \infty}{s_{m}}=e$.
+		$e \le \liminf_{n\to \infty}{t_{n}} \le \limsup_{n\to \infty}{t_{n}}\le e$.
+		Therefore, $\lim_{n\to \infty}{t_{n}}$ exists and equals $e$.
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[Root test]
+	\label{thm:3.33}
+	Let $\alpha=\limsup_{n\to \infty}{\sqrt[n]{|a_n|}}$. Then,
+	\[
+		\sum{a_{n}}
+		\begin{cases}
+			\text{converges}    & \text{if } \alpha<1 \\
+			\text{diverges}     & \text{if } \alpha>1 \\
+			\text{inconclusive} & \text{if } \alpha=1
+		\end{cases}
+	\]
+
+	\begin{proof}[Just outline]
+		\begin{description}
+			\item[$\alpha< \beta < 1$]
+			      Eventually $|a_n|\le \beta^{n}$, thus convergence.
+			\item[$\alpha > 1$]
+			      $|a_{n}|>1$ for infinitely many $n$, thus divergence.
+			\item[$\alpha=1$]
+			      $\frac{1}{n}$ diverges, $\frac{1}{n^2}$ converges.
+		\end{description}
+	\end{proof}
+\end{theorem}
+\begin{theorem}[Ratio test]
+	\label{thm:3.34}
+	The series $\sum_{n=1}^{\infty}{a_{n}}$ with $a_{n}\neq 0$ converges if $\limsup_{n\to \infty}{|\frac{a_{n+1}}{a_{n}}|}<1$ and diverges if $\exists_{N \in \N} \text{ s.t. } \forall_{n \ge  N}:  |\frac{a_{n+1}}{a_{n}}|\ge 1 $. Otherwise, inconclusive.
+	\begin{proof}
+		(see textbook).\\
+		\begin{description}
+			\item[Convergence]
+			      $\sum_{}{a_{n}}
+				      \begin{cases}
+					      \text{converges} & \text{if } \lim_{n\to \infty}{|\frac{a_{n+1}}{a_{n}}|}<1    \\
+					      \text{diverges}  & \text{if } \lim_{n\to \infty}{|\frac{a_{n+1}}{a_{n}}|}>1    \\
+					      \text{diverges}  & \text{if } \liminf_{n\to \infty}{|\frac{a_{n+1}}{a_{n}}|}>1 \\
+				      \end{cases}
+			      $
+		\end{description}
+		\begin{note}
+			Note that we cannot replace $\liminf$ with $\limsup$ in the last case.
+		\end{note}
+
+	\end{proof}
+
+\end{theorem}
+
+
