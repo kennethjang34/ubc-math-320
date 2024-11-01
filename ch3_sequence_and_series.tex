@@ -474,9 +474,99 @@ However the converse does hold for monotonic sequences.
 		\begin{note}
 			Note that we cannot replace $\liminf$ with $\limsup$ in the last case.
 		\end{note}
-
 	\end{proof}
-
 \end{theorem}
+
+\begin{example}
+	\label{ex:3.35b}
+	Let $s_{n}=\sum_{n=0}^{\infty}{a_{n}}=\frac{1}{2}+1+\frac{1}{8}+\frac{1}{4}+\frac{1}{32}+\frac{1}{16}+\frac{1}{128}+\frac{1}{64}+ \cdots$.
+	First, note that $a_{2k}=\frac{1}{2}\cdot\frac{1}{4^{k}}, a_{2k+1}=2a_{2k}=\frac{1}{4^{k}} \text{ for } k \ge 0$.
+	\begin{description}
+		\item[Ratio test]
+		      Then the ratio $\frac{a_{n+1}}{a_n}$ is the sequence $2, \frac{1}{8}, 2, \frac{1}{8},2, \frac{1}{8}, \ldots $. Therefore, $\liminf_{n\to \infty}{\frac{a_{n+1}}{a_{n}}}=\frac{1}{8}, \limsup_{n\to \infty}{\frac{a_{n+1}}{a_{n}}}=2$.
+		      The ratio test is inconclusive for $s_{n}$.
+		\item[Root test]
+		      $a_{n}= \begin{cases}
+				      \frac{1}{2} \cdot \frac{1}{2^{n}} & n \text{ even} \\
+				      \frac{2}{2^{n}}                   & n \text{ odd}
+			      \end{cases}
+		      $, so $(\frac{1}{2})^{1/n}\cdot \frac{1}{2} \le  \sqrt[n]{a_{n}}\le \frac{2^{1/n}}{2}$, thus $\lim_{n\to \infty}{\sqrt[n]{a_{n}}}=\frac{1}{2}<1$. Therefore, $s_{n}=\sum_{n=0}^{\infty}{a_{n}}$ converges.
+	\end{description}
+	This is an example where the ratio test is inconclusive but the root test is conclusive.
+\end{example}
+
+\begin{theorem}
+	\label{thm:3.47}
+	If $\sum{a_{n}}=A$ and $\sum{b_{n}}=B$, then $\sum{a_{n} + b_{n}}=A+B$ and $\sum{c \cdot a_{n}}=c  A$.
+\end{theorem}
+
+\section{Power Series}
+\begin{definition}[Power Series]
+	\label{def:3.38}
+	For $z \in \C$ and a complex sequence $\{ {c}_{n}\}$, $\sum_{n=0}^{\infty}{c_{n}z^{n}}$ is a power series.
+	\begin{remark}
+		As $z^{0}=1$ for all $z \in \C$, by convention $\sum_{n=0}^{\infty}{c_{n}z^{n}}=c_0+\sum_{n=1}^{\infty}{c_{n}z^{n}}$.
+	\end{remark}
+\end{definition}
+
+\begin{theorem}
+	\label{thm:3.39}
+	Let $R=\frac{1}{\limsup_{n\to \infty}{\sqrt[n]{|c_{n}|}}}$ such that
+	\[
+		R= \begin{cases}
+			0 & \text{if } \limsup_{n\to \infty}{\sqrt[n]{|c_{n}|}}=\infty \\
+			% \infty                                             & \text{if } \limsup_{n\to \infty}{\sqrt[n]{|c_{n}|}}=0        \\
+		\end{cases}
+	\].
+	Then $\sum{c_{n}z^{n}} \begin{cases}
+			\text{converges}    & \text{if } |z|<R \\
+			\text{diverges}     & \text{if } |z|>R \\
+			\text{inconclusive} & \text{if } |z|=R
+		\end{cases}$
+	\begin{proof}
+		$\limsup_{n\to \infty}{\sqrt[n]{|c_{n}z^{n}|}}=|z| \cdot \limsup_{n\to \infty}{\sqrt[n]{|c_{n}|}}=\frac{|z|}{R}$.
+		By root test, the series converges if $\frac{|z|}{R}<1$ and diverges if $\frac{|z|}{R}>1$.
+		\begin{note}
+			In practice, often use the ratio test to find $R$.
+		\end{note}
+	\end{proof}
+\end{theorem}
+
+\begin{example}
+	\begin{enumerate}
+		\item $\sum{n! \cdot z^{n}}$ has $R=0$.
+		      \begin{description}
+			      \item [By ratio test]
+			            $\left| \frac{(n+1)! \cdot z^{n+1}}{n! \cdot z^{n}} \right|=|z|\cdot(n+1) \to \infty \forall z\neq 0$. Hence, the series diverges $\forall z \neq 0$.
+			      \item[By root test]
+			            Note $n\neq \frac{1}{2}(\frac{2}{3})^{2}(\frac{3}{4})^{3} \cdots (\frac{n-1}{n})^{n-1} n^{n}$ for $n\ge 2$.
+			            Then $n\neq  \frac{n^{n}}{(1+1)^{1}(1+\frac{1}{2})^{2}(1+\frac{1}{n-1})^{n-1}}$. In the proof of Theorem~\ref{thm:3.31}, we saw $(1+\frac{1}{j})\le e$. So $n! \ge \frac{n^{n}}{e^{n-1}}=e \cdot (\frac{n}{e})^{n}$.
+			            $\sqrt[n]{n!}\ge e^{1/n} \cdot \frac{n}{e} \to \infty$ as $n\to \infty$. Therefore, $R=\frac{1}{\infty}=0$.
+			            \begin{note}
+				            Cf. Stirling's formula: $n! \sim \sqrt{2\pi n} \left( \frac{n}{e} \right)^{n}$.
+			            \end{note}
+		      \end{description}
+	\end{enumerate}
+\end{example}
+\begin{definition}[Absolute Convergence, Conditional Convergence]
+	\hfill
+	\begin{enumerate}
+		\item
+		      $\sum{a_{n}}$ converges absolutely if $\sum{|a_{n}|}$ converges.
+		\item $\sum{a_{n}}$ converges conditionally if $\sum{a_{n}}$ converges but $\sum{|a_{n}|}$ diverges.
+	\end{enumerate}
+	\hfill
+	\begin{remark}
+		All other convergence tests seen so far are actually tests for absolute convergence.
+	\end{remark}
+\end{definition}
+
+\begin{example}
+	\begin{itemize}
+		\item
+		      $\sum_{n=1}^{\infty}{(-1)^{n-1}\frac{1}{n}}$ converges conditionally by the alternating series test of assignment 7's practice problem 1. See also Theorem 3.43. (MUST TAKE A LOOK!)
+	\end{itemize}
+	\item Given $a_1\ge a_2\ge a_3\ge \cdots \ge 0$ and $a_{n}\to 0$, then $\sum{(-1)^{n}a_{n}}$ converges.
+\end{example}
 
 
