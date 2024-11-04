@@ -563,10 +563,68 @@ However the converse does hold for monotonic sequences.
 
 \begin{example}
 	\begin{itemize}
-		\item
-		      $\sum_{n=1}^{\infty}{(-1)^{n-1}\frac{1}{n}}$ converges conditionally by the alternating series test of assignment 7's practice problem 1. See also Theorem 3.43. (MUST TAKE A LOOK!)
+		\item $\sum_{n=1}^{\infty}{(-1)^{n-1}\frac{1}{n}}$ converges conditionally by the alternating series test of assignment 7's practice problem 1. See also Theorem 3.43. (MUST TAKE A LOOK!)
+		\item Given $a_1\ge a_2\ge a_3\ge \cdots \ge 0$ and $a_{n}\to 0$, then $\sum{(-1)^{n}a_{n}}$ converges.
+		\item $\sum_{n=0}^{\infty}{n!2^{n}}$ has $R=0$
+		\item $\sum_{n=0}^{\infty}{\frac{z^{n}}{n^{n}}}$ has $R=\infty$ since $R=\frac{1}{\limsup_{n\to \infty}{\sqrt[n]{|c_{n}|}}}=\frac{1}{\limsup_{n\to \infty}{\frac{1}{n}}}=1/0=\infty$, or use ratio test, $|\frac{z^{n+1}/(n+1)^{n+1}}{z^{n}/n^{n}}|=|z|=\frac{n^{n}}{(n+1)^{n+1}}=|z|\frac{1}{n+1} \frac{1}{(1+\frac{1}{n})^{n}}$.
+		      Since $(1+\frac{1}{n})^{n} \to  \frac{1}{e}$ as $n\to \infty$,
+		      $|z|\frac{1}{n+1} \frac{1}{(1+\frac{1}{n})^{n}} \to 0$ as $n\to \infty \forall_{z \in \C}$ so $R=\infty$.
 	\end{itemize}
-	\item Given $a_1\ge a_2\ge a_3\ge \cdots \ge 0$ and $a_{n}\to 0$, then $\sum{(-1)^{n}a_{n}}$ converges.
 \end{example}
 
+\begin{remark}
+	Conditionally convergent series have a bad feature.
+\end{remark}
+
+\begin{theorem}[Thm 3.54]
+	\label{thm:3.54}
+	Suppose $\sum_{}{a_{n}}$ converges conditionally.
+	Let $-\infty\le \alpha\le \beta\le +\infty$. Then $\exists \text{bijection }f: \N\to \N$ such that with $a'_{n}=a_{f(n)}$ and $S'_n=\sum_{k=1}^{n}{a'_k}$, we have $\liminf_{n\to \infty}{s'_n}=\alpha$ and $\limsup_{n\to \infty}{s'_n}=\beta$
+	\begin{proof}
+		Take a look at the textbook
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[Thm 3.55]
+	\label{thm:3.55}
+	If $\sum{a_{n}}$ converges absolutely, then every rearrangement of $\sum{a_{n}}$ converges to the same sum.
+	\begin{proof}
+		Take a look at the textbook
+	\end{proof}
+\end{theorem}
+
+\section{Products of Series}
+\paragraph{Motivation}
+% The coefficient of 
+Consider $z^{N}$ in $(\sum_{n=0}^{\infty}{a_{n}z^{n}})(\sum_{n=0}^{\infty}{b_{n}z^{n}})$.
+Since $(\sum_{n=0}^{\infty}{a_{n}z^{n}})(\sum_{n=0}^{\infty}{b_{n}z^{n}})
+	=(a_0+a_1z+a_2z^2+\cdots)(b_0+b_1z+b_2z^2+\cdots)=(a_0b_0)+(a_0b_1+a_1b_0)z+(a_0b_2+a_1b_1+a_2b_0)z^2+\cdots$, $z^{N}$ has coefficient $\sum_{k=0}^{N}{a_kb_{N-k}}$.
+\begin{definition}
+	The product of $\sum_{n=0}^{\infty}{a_{n}}$ and $\sum_{n=0}^{\infty}{b_{n}}$ is $\sum_{n=0}^{\infty}{c_{n}}$ where $c_{n}=\sum_{k=0}^{n}{a_kb_{n-k}}$.
+	\begin{note}
+		This is a discrete convolution.
+	\end{note}
+\end{definition}
+
+\paragraph{Question}
+If $\sum_{}{a_{n}}=A$ and $\sum_{}{b_{n}}=B$ both converge, does $\sum_{}{c_{n}}$ converge and if so, does it converge to $AB$?
+\paragraph{Answer}
+$\sum_{}{c_{n}}$ converges if $\sum_{}{a_{n}}$ and $\sum_{}{b_{n}}$ converge absolutely. (ref: Thm~\ref{thm:3.50}). Moreover, if $\sum_{}{c_{n}}$ does converge, then it must converge to $AB$ (ref: Thm~\ref{thm:3.51}). Maybe no otherwise (ref: Example 3.49).
+
+\begin{theorem}[Thm 3.50]
+	\label{thm:3.50}
+	Suppose $\sum_{}{a_{n}}$ converges absolutely to $A$ and $\sum_{}{b_{n}}$ converges to $B$. Then $\sum_{}{c_n}$ converges to $AB$.
+	\begin{proof}
+		Let $A_{n}=\sum_{k=0}^{n}{a_{k}}$, $B_{n}=\sum_{k=0}^{n}{b_{k}}$, $C_{n}=\sum_{k=0}^{n}{c_{k}}$.
+		Then $A_{n} \to  A, B_{n}\to B$.
+		By definition, $C_{n}=\sum_{k=0}^{n}{\sum_{j=0}^{k}{a_{j}b_{k-j}}}=\sum_{j=0}^{n}{\sum_{k=j}^{n}{a_j b_{k-j}}}=\sum_{j=0}^{n}{a_{j} \sum_{k=j}^{n}{b_{k-j}}}
+			=\sum_{j=0}^{n}{a_{j}B_{n-j}}=\sum_{j=0}^{n}{a_{j}B}-\sum_{j=0}^{n}{a_{j}(B_{n-j}-B)}$. Let $\beta_{n-j}$, where $\beta_k=B_k -B$.
+		Then $C_n=A_nB + \sum_{j=0}^{n}{a_{j}\beta_{n-j}}$. Let $\gamma_n=\sum_{j=0}^{n}{a_{j}\beta_{n-j}}$.
+		Note that $A_nB \to AB, \beta_k \to 0$ as $n\to \infty$.
+		Let $\alpha=\sum_{k=0}^{\infty}{|a_k|}<\infty $  ($\because$ $a_{n}$ converges absolutely by assumption). Rewrite $\gamma_n$ as $\gamma_n=\sum_{j=0}^{n}{a_{n-j} \beta_j}$. We know $\beta+j \to 0$ as $j\to \infty$.
+		Let $\epsilon>0$. Choose $N$ s.t. $|\beta_j|<\epsilon$ if $j\ge N$.
+		Then for $n\ge N+1$, $|\gamma_n|\le |\sum_{j=0}^{N}{a_{n-j}\beta_j}|+|\sum_{j=N+1}^{n}{a_{n-j}\beta_j}|$. Note $|\sum_{j=N+1}^{n}{a_{n-j}\beta_j}| \le \epsilon \sum_{j=N+1}^{n}{|a_{n-j}|}\le \epsilon \alpha$.
+		Let $n\to \infty$ with $N$ fixed. Then $a_{n-j}\to 0$ for $0 \le j \le N$ since $|a_{n}|\to 0$.
+	\end{proof}
+\end{theorem}
 
