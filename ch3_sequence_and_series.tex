@@ -298,9 +298,9 @@ However the converse does hold for monotonic sequences.
 \end{definition}
 
 \begin{theorem}
-	$\sum_{n \in \N}{a_{n}}$ converges if and only if $\exists_{\epsilon >0}: \exists N \text{ s.t. } |\sum_{k=m}^{n}{a_{k}}| <\epsilon \forall{n\ge m\ge  N}$.
+	$\sum_{n \in \N}{a_{n}}$ converges if and only if $\forall_{\epsilon >0}: \exists N \text{ s.t. }\forall{n\ge m\ge  N}: |\sum_{k=m}^{n}{a_{k}}| <\epsilon $.
 	\begin{proof}
-		$\sum_{n}{a_{n}}$ converges $\Leftrightarrow $ $\{ {s}_{n}\}$ converges $\implies  $ $\{ {s}_{n}\}$ is a Cauchy sequence. Use $s_{n}-s_{m-1}=\sum_{k=m}^{n}{a_k}$.
+		$\sum_{n}{a_{n}}$ converges $\Leftrightarrow $ $\{ {s}_{n}\}$ converges $\Leftrightarrow$ $\{ {s}_{n}\}$ is a Cauchy sequence ($\because\; \C$ is compact). Use $s_{n}-s_{m-1}=\sum_{k=m}^{n}{a_k}$.
 	\end{proof}
 \end{theorem}
 \begin{corollary}
@@ -364,7 +364,7 @@ However the converse does hold for monotonic sequences.
 	Suppose $a_1\ge a_2\ge a_3\ge \cdots \ge 0$. Then $\sum_{n=1}^{\infty}{a_{n}}$ converges $\Leftrightarrow $ $\sum_{k=1}^{\infty}{2^{k}a_{2^{k}}}$ converges.
 	\begin{proof}
 		\begin{description}
-			\item[$(\impliedby )$] We show that if $\sum_{n}{a_{n}}$ then $\sum_{k}{2^{k}a_{2^{k}}}$ diverges.
+			\item[$(\impliedby )$] We show that if $\sum_{n}{a_{n}}$ diverges, then $\sum_{k}{2^{k}a_{2^{k}}}$ diverges.
 			      For this, note that $a_1+a_2+\ldots +a_{n}\le a_1+(a_2+a_3)+(a_4+a_5+a_6+a_7)+\cdots (a_{2^{k}}+a_{2^{k}+1}+\cdots + a_{2^{k+1}-1})$ if $2^{k+1}>n$.\\
 			      $a_1+a_2 \cdots + a_{n} \le a_1+ 2 a_2 + 4 a_4 + \cdots + 2^{k}a_{2^{k}}$.
 			      LHS unbounded as $n\to \infty $, so RHS is also unbounded as $k \to \infty $.
@@ -402,9 +402,14 @@ However the converse does hold for monotonic sequences.
 	\begin{remark}
 		\begin{description}
 			\item[Convergence]
-			      $\frac{1}{n!}=\frac{1}{(n(n-1)(n-2)\cdots 3\cdot 2 \cdot 1)}\le \frac{1}{2\cdot 2\cdot 2 \cdot 2 \cdots \cdot 2 \cdot 1}=\frac{1}{2^{n-1}}$. Therefore, $S_n= \sum_{k=0}^{n}{\frac{1}{k!}}\le 1+\sum_{k=1}^{n}{\frac{1}{2^{k-1}}}<1+\sum_{k=1}^{\infty }{\frac{1}{2^{k-1}}}=1+\frac{1}{1- 1/2}=3$. Hence, $e \le 3$.
-			\item[Rate of Convergence]
-			      $0<e-S_n=\sum_{k=n+1}{\infty}{\frac{1}{k!}}< \sum_{k=n+1}^{\infty}{\frac{1}{(n+1)^{k-n+1}}\cdot  \frac{1}{(n+1)!}}= \frac{1}{(n+1)!} \sum_{k=n+1}{\infty} \frac{1}{(n+1)^{k-(n+1)}}=\frac{1}{(n+1)!} \cdot \frac{1}{1-1/(n+1)}=\frac{1}{(n!)\cdot n}$.
+			      $\frac{1}{n!}=\frac{1}{(n(n-1)(n-2)\cdots 3\cdot 2 \cdot 1)}\le \frac{1}{2\cdot 2\cdot 2 \cdot 2 \cdots \cdot 2 \cdot 1}=\frac{1}{2^{n-1}}$. Therefore, $S_n= \sum_{k=0}^{n}{\frac{1}{k!}}\le 1+\sum_{k=1}^{n}{\frac{1}{2^{k-1}}}<1+\sum_{k=1}^{\infty }{\frac{1}{2^{k-1}}}=1+\frac{1}{1- 1/2}=3$. Then $S_n$ is a monotonically increasing sequence that's also bounded. Hence, $e \le 3$
+			\item[Rate of Convergence]\hfill\\
+			      $0<e-S_n=\sum_{k=n+1}^{\infty}{\frac{1}{k!}}$
+			      $< \sum_{k=n+1}^{\infty}{\frac{1}{(n+1)^{k-n+1}}\cdot  \frac{1}{(n+1)!}}$
+
+			      $= \frac{1}{(n+1)!} \sum_{k=n+1}^{\infty} \frac{1}{(n+1)^{k-(n+1)}}$
+
+			      $=\frac{1}{(n+1)!} \cdot \frac{1}{1-1/(n+1)}=\frac{1}{(n!)\cdot n}$.
 
 		\end{description}
 	\end{remark}
@@ -415,7 +420,7 @@ However the converse does hold for monotonic sequences.
 	$e \not\in \Q$.
 	\begin{proof}
 		For contradiction, suppose $e=\frac{p}{q}, p,q \in \N$.
-		Then  $0<e-S_q<\frac{1}{q\cdot q!}$, so $0<q!\cdot e - q! \cdot S_q< \frac{1}{q}$. If we show $q! \cdot e - q! \cdot S_q \in \Z$, then we'll have a contradiction.
+		Then  $0<e-S_q<\frac{1}{q\cdot q!}$, so $0<q!\cdot e - q! \cdot S_q< \frac{1}{q}$. If $q! \cdot e - q! \cdot S_q \in \Z$, $q! \cdot e - q! \cdot S_q$ is an integer between $0$ and $1$, which is a contradiction.
 		But $q! \cdot e - q! \cdot S_q=q! \cdot \frac{p}{q} - \sum_{k=0}^{q}{\frac{q!}{k!}}$. Because $q! \cdot \frac{p}{q} \in \N$ and $\sum_{k=0}^{q}{\frac{q!}{k!}} \in \N$, the difference of them, $q! \cdot e - q! \cdot S_q \in \Z$, thus a contradiction.
 	\end{proof}
 \end{theorem}
@@ -465,17 +470,21 @@ However the converse does hold for monotonic sequences.
 			\item[Convergence]
 			      $\sum_{}{a_{n}}
 				      \begin{cases}
-					      \text{converges} & \text{if } \lim_{n\to \infty}{|\frac{a_{n+1}}{a_{n}}|}<1    \\
-					      \text{diverges}  & \text{if } \lim_{n\to \infty}{|\frac{a_{n+1}}{a_{n}}|}>1    \\
-					      \text{diverges}  & \text{if } \liminf_{n\to \infty}{|\frac{a_{n+1}}{a_{n}}|}>1 \\
+					      \text{converges}    & \text{if } \lim_{n\to \infty}{|\frac{a_{n+1}}{a_{n}}|}<1               \\
+					      \text{diverges}     & \text{if } \lim_{n\to \infty}{|\frac{a_{n+1}}{a_{n}}|}>1               \\
+					      \text{diverges}     & \text{if } \liminf_{n\to \infty}{|\frac{a_{n+1}}{a_{n}}|}>1            \\
+					      \text{inconclusive} & \text{otherwise. e.g., } \lim_{n\to \infty}{|\frac{a_{n+1}}{a_{n}}|}=1
 				      \end{cases}
 			      $
 		\end{description}
 		\begin{note}
-			Note that we cannot replace $\liminf$ with $\limsup$ in the last case.
+			Note that we cannot replace $\liminf$ with $\limsup$ in the third case.
+			For inconclusive case, check $\sum{1/n}\to \infty$ and $\sum{1/n^2}\to \pi ^2 /6$
 		\end{note}
 	\end{proof}
 \end{theorem}
+
+
 
 \begin{example}
 	\label{ex:3.35b}
@@ -505,7 +514,7 @@ However the converse does hold for monotonic sequences.
 	\label{def:3.38}
 	For $z \in \C$ and a complex sequence $\{ {c}_{n}\}$, $\sum_{n=0}^{\infty}{c_{n}z^{n}}$ is a power series.
 	\begin{remark}
-		As $z^{0}=1$ for all $z \in \C$, by convention $\sum_{n=0}^{\infty}{c_{n}z^{n}}=c_0+\sum_{n=1}^{\infty}{c_{n}z^{n}}$.
+		As $z^{0}=1$ for all $z \in \C$, by convention we write $\sum_{n=0}^{\infty}{c_{n}z^{n}}=c_0+\sum_{n=1}^{\infty}{c_{n}z^{n}}$.
 	\end{remark}
 \end{definition}
 
@@ -579,7 +588,7 @@ However the converse does hold for monotonic sequences.
 \begin{theorem}[Thm 3.54]
 	\label{thm:3.54}
 	Suppose $\sum_{}{a_{n}}$ converges conditionally.
-	Let $-\infty\le \alpha\le \beta\le +\infty$. Then $\exists \text{bijection }f: \N\to \N$ such that with $a'_{n}=a_{f(n)}$ and $S'_n=\sum_{k=1}^{n}{a'_k}$, we have $\liminf_{n\to \infty}{s'_n}=\alpha$ and $\limsup_{n\to \infty}{s'_n}=\beta$
+	Let $-\infty\le \alpha\le \beta\le +\infty$. Then $\exists \text{bijection }f: \N\to \N$ such that with $a'_{n}=a_{f(n)}$ and $S'_n=\sum_{k=1}^{n}{a'_k}$, $\liminf_{n\to \infty}{s'_n}=\alpha$ and $\limsup_{n\to \infty}{s'_n}=\beta$. In other words, there exists a rearrangement of $\sum{a_n}$, say $\sum{a'_n}$, such that $\liminf_{n\to \infty}{\sum{a'_n}}=\alpha, \limsup_{n\to \infty}{\sum{a'_n}}=\beta$.
 	\begin{proof}
 		Take a look at the textbook
 	\end{proof}
@@ -609,7 +618,7 @@ Since $(\sum_{n=0}^{\infty}{a_{n}z^{n}})(\sum_{n=0}^{\infty}{b_{n}z^{n}})
 \paragraph{Question}
 If $\sum_{}{a_{n}}=A$ and $\sum_{}{b_{n}}=B$ both converge, does $\sum_{}{c_{n}}$ converge and if so, does it converge to $AB$?
 \paragraph{Answer}
-$\sum_{}{c_{n}}$ converges if $\sum_{}{a_{n}}$ and $\sum_{}{b_{n}}$ converge absolutely. (ref: Thm~\ref{thm:3.50}). Moreover, if $\sum_{}{c_{n}}$ does converge, then it must converge to $AB$ (ref: Thm~\ref{thm:3.51}). Maybe no otherwise (ref: Example 3.49).
+$\sum_{}{c_{n}}$ converges if $\sum_{}{a_{n}}$ and $\sum_{}{b_{n}}$ converge absolutely. (ref: Thm~\ref{thm:3.50}). Moreover, if $\sum_{}{c_{n}}$ does converge, then it must converge to $AB$ (ref: Thm 3.51). Maybe no otherwise (ref: Example 3.49).
 
 \begin{theorem}[Thm 3.50]
 	\label{thm:3.50}
@@ -628,3 +637,4 @@ $\sum_{}{c_{n}}$ converges if $\sum_{}{a_{n}}$ and $\sum_{}{b_{n}}$ converge abs
 	\end{proof}
 \end{theorem}
 
+Midterm 2 covers up to this point (TB p.36-82, A.5-8)
