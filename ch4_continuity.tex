@@ -14,8 +14,7 @@ Assume general metric spaces $X,Y$ and $f: X\to Y$.
 % For instance, let the next figure represent $E \subset X$.
 % \end{example}
 
-\begin{theorem}[Theorem 4.2]
-	\label{thm:4.2}
+\begin{theorem}[2]
 	$\lim_{x\to p}{f(x)}=q \Leftrightarrow \forall_{\{ {p}_{n}\} \text{ in } E}: \lim_{n\to \infty}{f(p_{n})}=q$ such that $p_{n}=p$ and $p_{n}\to p$, where the RHS is the limit of Definition 3.1.
 	\begin{note}
 		This implies uniqueness of $q$ in Definition 4.1.
@@ -33,8 +32,7 @@ Assume general metric spaces $X,Y$ and $f: X\to Y$.
 	\end{proof}
 \end{theorem}
 
-\begin{theorem}[Theorem 4.4]
-	\label{thm:4.4}
+\begin{theorem}[4]
 	When $Y=\C$, limit as defined in Definition~\ref{def:4.1} respects sums, products and quotients.
 	\begin{proof}
 		By Theorem~\ref{thm:4.2}, it suffices to show that the theorem holds for sequences.
@@ -49,16 +47,14 @@ Assume general metric spaces $X,Y$ and $f: X\to Y$.
 	\end{note}
 \end{definition}
 
-\begin{theorem}[Theorem 4.6]
-	\label{thm:4.6}
+\begin{theorem}[6]
 	Suppose $E \subset X, p \in E \cap E', f: E\to Y$. Then $f$ is continuous at $p$ if and only if $\lim_{x\to p}{f(x)}=f(p)$.
 	\begin{proof}
 		By Definition~\ref{def:4.1} and Definition~\ref{def:4.5} with $q=f(p)$.
 	\end{proof}
 \end{theorem}
 
-\begin{theorem}[Theorem 4.7]
-	\label{thm:4.7}
+\begin{theorem}[7]
 	For $E \subset  X, f: E\to Y, g: f(E)\to Z$, let $h=g \circ f: E\to Z$. If $f$ is continuous at $p \in E$ and if $g$ is continuous at $f(p) \in Y$, then $h$ is continuous at $p$.
 	\begin{proof}
 		Choose $\eta>0$ such that $d_{Y}(f(p),y)<\eta \implies d_{Z}(g(f(p)),g(y))<\epsilon$ (continuity of $g$ at $f(p)$).
@@ -76,8 +72,7 @@ Assume general metric spaces $X,Y$ and $f: X\to Y$.
 	% \end{note}
 \end{theorem}
 
-\begin{theorem}[Theorem 4.8: Topological Characterization of Continutiy]
-	\label{thm:4.8}
+\begin{theorem}[8][Theorem 4.8: Topological Characterization of Continutiy]
 	$f: X\to Y$ is continuous $\Leftrightarrow  f^{-1}(V)$ is open for every open $V \subset Y$.
 	\begin{proof}
 		\begin{description}
@@ -119,3 +114,115 @@ Assume general metric spaces $X,Y$ and $f: X\to Y$.
 		Let $V \subset Y$ be open and $F=V^{c}$. Then the above condition (RHS) is the same as $f^{-1}(V)=f^{-1}(F^{c})=(f^{-1}(F))^{c}$ is open.
 	\end{proof}
 \end{corollary}
+
+
+\begin{theorem}[9]
+	Let $f: X\to \C, g: X\to \C$ be continuous. Then $f+g, f \cdot g, f/g(\text{at points $p$ where $g(p)\neq 0$})$ are also continuous.
+\end{theorem}
+
+\begin{theorem}[10]
+	Given $f_i: X\to \R(i=1,2,\ldots ,k)$, define $f: X\to \R^{k}$ by $f(x)=(f_1(x),\ldots ,f_k(x))$.
+	Then
+	\begin{enumerate}
+		\item
+		      $f$ is continuous if and only if each $f_i$ is continuous.
+		\item if $f,g: X\to \R^{k}$ are continuous, then so are $f+g: X\to \R^{k}, f \cdot g: X\to \R^{1}$
+	\end{enumerate}
+\end{theorem}
+
+
+\begin{example}
+	\label{eg:4.11}
+	\begin{enumerate}
+		\item For $i=1,\ldots ,k$, define $\phi_i: \R^{k}\to \R$ by $\phi_i(x)=x_i$, where $x=(x_1,x_2,\ldots ,x_k)$. Then $|\phi_{i}(x)-\phi_{i}(y)|=|x_i-y_i|\le \left( \sum_{j=1}^{k}{|x_j-y_j|^{2}} \right)^{1/2}=|x-y|$, so $\phi_{i}$ is continuous(take $\delta=\epsilon$. If $|x-y|<\delta=\epsilon$, then $|\phi_{i}(x)-\phi_{i}(y)|<\epsilon$).
+		\item The functions $\R^{k}\to \R$ defined by $x \mapsto x_1^{n_1}x_2^{n_2}\cdots x_k^{n_k}(n_i \in \{0,1,2,\ldots \})$ is continuous on $\R^{k}$ and so is any polynomial $P(x)=\sum{C_{n_1,n_2,n_3,\ldots ,n_k}x_1^{n_1} x_2^{n_2}\cdots x_k^{n_k}}$, where $C_{n_1,n_2,n_3,\ldots ,n_k}$ is a constant (function) in $\C$.
+		\item Rational functions $f(x)=\frac{P(x)}{Q(x)}$ are continuous at points where $Q(x)\neq 0$.
+		\item The function $\R^{k} \to \R$ defined by $x \mapsto |x|$ is continuous.
+		      \begin{proof}
+			      $|x|=|y+(x-y)|\le |y|+|x-y|$, so $|x|-|y|\le |x-y|$. Similarly, $|y|-|x|\le |y-x|$, so $||x|-|y||\le |x-y|$. Thus by taking $\delta=\epsilon$, $|x-y|<\delta \implies ||x|-|y||<\epsilon$.
+		      \end{proof}
+		\item Suppose $f: X\to \R^{k}$ is continuous. Then $p \mapsto |f(p)|$ is continuous.
+		      \begin{proof}
+			      $p \mapsto |f(p)|= (y \mapsto |y|) \circ (p \mapsto f(p))$.
+			      Since both $(y \mapsto |y|)$, $(p \mapsto f(p))$ are continuous, $p \mapsto |f(p)|$ is continuous by Theorem~\ref{thm:4.7}.
+		      \end{proof}
+	\end{enumerate}
+\end{example}
+\begin{note}
+	A function is said to be continuous on the \textit{domain}, not on the \textit{range}.
+\end{note}
+
+\begin{theorem}[14]
+	Let $f: X\to Y$ be continuous and $X$ be compact. Then $f(X)$ is compact.
+	\begin{proof}
+		Let $\{ V_{\alpha} \}$ be an open cover of $f(X)$.
+		We need to find a finite subcover of $f(X)$.
+		By Theorem~\ref{thm:4.8}, each set $O_{\alpha}=f^{-1}(V_{\alpha})$ is open and $\bigcup_{\alpha} O_{\alpha}=\bigcup_{\alpha} f^{-1}(V_{\alpha})=f^{-1}(\bigcup_{\alpha}V_{\alpha})=f^{-1}(f(X))=X$. Hence, $\{O_{\alpha}\} $ is an open cover of $X$, so there exists a finite subcover $X=O_{\alpha_1} \cup \cdots \cup O_{\alpha_n}$.
+		However, then $f(x)=\bigcup_{i=1}^{n}f(O_{\alpha_{i}})= \bigcup_{i=1}^{n}f(f^{-1}(V_{\alpha_{i}})) \subset \bigcup_{i=1}^{n}V_{\alpha_i}$. Therefore, $\{V_{\alpha_{i}}\}^{n}_{i=1}$ is a finite subcover of $f(X)$.
+	\end{proof}
+\end{theorem}
+\begin{definition}[4.13]
+	\label{def:4.13}
+	$f: E \to \R^{k}$ is bounded if $\exists_{M>0} \text{ s.t. } |f(x)|\le M\, \forall x \in E$.
+\end{definition}
+
+\begin{theorem}[15]
+	If $X$ is compact and $f:X\to \R^{k}$, then $f(X)$ is closed and bounded (so $f$ is bounded).
+	\begin{proof}
+		$f(X)$ is compact by Theorem~\ref{thm:4.14}, and since $f(X) \subset \R^{k}$, it is closed and bounded.
+	\end{proof}
+\end{theorem}
+
+\begin{thm}[16]
+	If $X$ is compact and $f:X\to \R^{1}$ is continuous, then $\exists_{p,q \in X}\text{ s.t. } f(p)\le f(x)\le f(q)$ for all $x \in X$.
+	\begin{proof}
+		By Theorem~\ref{thm:4.15}, $f(X)$ is closed and bounded.
+		% By Theorem~\ref{thm:2.28}, $M \in f(X)$ and similarly $m \in f(X)$.
+		By Theorem 2.28, $M \in f(X)$ and similarly $m \in f(X)$.
+	\end{proof}
+\end{thm}
+\begin{example}
+	Let $X=(0,1)$, not compact, let $f(x)=\frac{1}{x}$, continuous. However, $\nexists_{p \in X} \text{ s.t. } \forall_{x \in X}:  f(p)\le f(x)$ and $\not \exists_{q \in X} \text{ s.t. } \forall_{x \in X}:  f(x)\le f(q)$.
+\end{example}
+
+
+\begin{theorem}[17]
+	Suppose $f:X\to Y$ is one-to-one, onto, continuous, where $X$ is compact.
+	Define $f^{-1}: Y\to X$ by $f^{-1}(f(x))=x$. Then $f^{-1}$ is continuous.
+	\begin{proof}
+		By Theorem~\ref{thm:4.8}, it suffices to prove that if $V \subset X$ is open then $(f^{-1})^{-1}(v)(=f(v))$ is open. However, $V^{c} \subset X$ is closed, hence $V^{c}$ is compact by Theorem~\ref{thm:4.14} and $(f(V^{c}))^{c}=f(V)$ is open.
+	\end{proof}
+\end{theorem}
+\begin{example}[Compactness is needed in Theorem~\ref{thm:4.17}]
+	Let $X=[0,2\pi), Y=\{(x,y) \in \R^{2}: x^2+y^2=1\}$. Define $f:X\to Y$ by $f(\theta)=(\cos{\theta},\sin{\theta})$.
+	This $f$ is 1-1, onto, and continuous, but $f^{-1}$ is not continuous as $X$ is not compact.
+	\begin{proof}
+		\begin{enumerate}[label=(\arabic*)]
+			\item $[0,1) \subset X$ is open but $(f^{-1})^{-1}([0,1))=f([0,1))$ is not open because $(1,0)$ is not an interior point of $Y$.
+			\item In $Y$, as $(x,y)\to (1,0)$ from above, $f((x,y))\to 0$.
+			      As $(x,y)\to (1,0)$ from below, $\lim{f^{-1}(x,y)}$ does not exist in $X$. (Wants to be $2\pi \not\in X$), so $f^{-1}$ is not continuous at $(1,0) \in Y$.
+		\end{enumerate}
+	\end{proof}
+\end{example}
+
+\begin{definition}
+	Let $X,Y$ be metric spaces and $f:X\to Y$.
+	$f$ is uniformly continuous on $X$ if $\forall_{\epsilon > 0}: \exists_{\delta > 0} \text{ s.t. } \text{ for all } p,q \in X$ with $d_x(p,q)<\delta$, we have $d_Y(f(p),f(q))<\epsilon$.
+	\begin{remark}
+		The point is for any $\epsilon$, there is some $\delta$ that works for every $p,q \in X$ such that $d(p,q)$.
+	\end{remark}
+\end{definition}
+
+\begin{example}
+	\begin{enumerate}
+		\item $X=(0,1), Y=\R,f(x)=\frac{1}{x}$. $f$ is continuous on $X$ but is not uniformly continuous.
+		      \begin{proof}
+			      For $x \in (0,\frac{1}{2})$, $|f(x)-f(2x)|=|\frac{1}{x}-\frac{1}{2x}|=\frac{1}{2x}\to \infty$ as $x \to 0$. Then $\text{ for } \epsilon=1$, given any $\delta \in (0,\frac{1}{2})$, we can pick $x<\delta$ s.t. $d_(X)(x,2x)=x<\delta$, but $d_Y(f(x),f(2x))=\frac{1}{2x}>\frac{1}{2 \delta}>1$.
+		      \end{proof}
+		\item $X=[0,5], Y=\R,f(x)=x^2$ is uniformly continuous.
+		      \begin{proof}
+			      For $0\le x_1\le x_2\le 5$ and $\epsilon>0$, $|f(x_1)-f(x_2)|=x_2^2-x_1^2=(x_2-x_1)(x_2+x_1)\le 10 \cdot (x_2-x_1)$, which is less than $\epsilon$ if $|x_2-x_1|<\frac{\epsilon}{10}=\delta$
+		      \end{proof}
+	\end{enumerate}
+\end{example}
+

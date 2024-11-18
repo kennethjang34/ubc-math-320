@@ -107,16 +107,16 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
+			% linecolor=ForestGreen, backgroundcolor=ForestGreen!5,
 		}
 ]{thmgreenbox}
 
 \declaretheoremstyle[
 	headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont,
 	mdframed={
-			linewidth=2pt,
+			thmbox=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=NavyBlue, backgroundcolor=NavyBlue!5,
+			% linecolor=NavyBlue, backgroundcolor=NavyBlue!5,
 		}
 ]{thmbluebox}
 
@@ -135,7 +135,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=RawSienna, backgroundcolor=RawSienna!5,
+			% linecolor=RawSienna, backgroundcolor=RawSienna!5,
 		}
 ]{thmredbox}
 
@@ -145,7 +145,7 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=RawSienna, backgroundcolor=RawSienna!1,
+			% linecolor=RawSienna, backgroundcolor=RawSienna!1,
 		},
 	qed=\qedsymbol\space
 ]{thmproofbox}
@@ -156,10 +156,18 @@
 	mdframed={
 			linewidth=2pt,
 			rightline=false, topline=false, bottomline=false,
-			linecolor=NavyBlue, backgroundcolor=NavyBlue!1,
+			% linecolor=NavyBlue, backgroundcolor=NavyBlue!1,
 		},
 ]{thmexplanationbox}
 
+\declaretheoremstyle[
+	headfont=\bfseries\sffamily, bodyfont=\normalfont,
+	numbered=yes,
+	mdframed={
+			linewidth=2pt,
+			rightline=false, topline=false, bottomline=false,
+		}
+]{thmbox}
 
 
 % \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, mdframed={ nobreak } ]{thmgreenbox}
@@ -169,19 +177,19 @@
 % \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, numbered=no, mdframed={ rightline=false, topline=false, bottomline=false, }, qed=\qedsymbol ]{thmproofbox}
 % \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, numbered=no, mdframed={ nobreak, rightline=false, topline=false, bottomline=false } ]{thmexplanationbox}
 
-\declaretheorem[style=thmgreenbox, name=Definition]{definition}
+\declaretheorem[style=thmgreenbox, name=Definition, numbered=no]{definition}
 \declaretheorem[style=thmbluebox, numbered=no, name=Example]{eg}
 % \declaretheorem[style=thmbluebox, numbered=no, name=Example]{example}
-\declaretheorem[style=thmredbox, name=Proposition]{prop}
-\declaretheorem[style=thmredbox, name=Theorem]{theorem}
-\declaretheorem[style=thmredbox, name=Lemma]{lemma}
-\declaretheorem[style=thmredbox, name=Lemma]{Lemma}
-\declaretheorem[style=thmredbox, name=Proposition]{proposition}
-\declaretheorem[style=thmredbox, name=Proposition]{Proposition}
-\declaretheorem[style=thmredbox, numbered=no, name=Corollary]{Corollary}
-\declaretheorem[style=thmredbox, numbered=no, name=Corollary]{corollary}
-
+\declaretheorem[style=thmbox, name=Proposition, numbered=no]{prop}
+\declaretheorem[style=thmbox, name=Lemma, numbered=no]{lemma}
+\declaretheorem[style=thmbox, name=Lemma, numbered=no]{Lemma}
+\declaretheorem[style=thmbox, name=Proposition, numbered=no]{proposition}
+\declaretheorem[style=thmbox, name=Proposition, numbered=no]{Proposition}
+\declaretheorem[style=thmbox, numbered=no, name=Corollary]{Corollary}
+\declaretheorem[style=thmbox, numbered=no, name=Corollary]{corollary}
+\declaretheorem[style=thmbox, name=Theorem, numbered=no]{theorem}
 \declaretheorem[style=thmproofbox, name=Proof]{replacementproof}
+
 \renewenvironment{proof}[1][]{
 \vspace{-10pt}
 \ifstrempty{#1}{
@@ -189,14 +197,19 @@
 }
 {
 	\begin{replacementproof}[#1]
-		}
-		}{\end{replacementproof}}
-
-% 		\declaretheorem[style=thmproofbox, name=Proof]{replacementproof}
-% \renewenvironment{proof}[1][]{\vspace{-10pt}\begin{replacementproof}[#1]}
-% 		{\end{replacementproof}}
+		}}{\end{replacementproof}}
 
 
+\renewenvironment{theorem}[1][]{
+\ifstrempty{#1}
+{
+	\begin{inner}
+}
+{
+	\setcounter{inner}{#1-1}
+	\begin{inner}
+		\label{thm:\thechapter.#1}}}
+		{\end{inner}}
 
 \declaretheorem[style=thmexplanationbox, name=Proof]{tmpexplanation}
 \newenvironment{explanation}[1][]{\vspace{-10pt}\begin{tmpexplanation}}{\end{tmpexplanation}}
@@ -301,6 +314,34 @@
 
 \newcommand\set[1]{\left\{#1\right\}}
 
+\newcommand{\getCurrentChapterNumber}{%
+	\thechapter
+}
+\declaretheorem[style=thmbox, numbered=yes, name=Theorem, numberwithin=chapter]{inner}
+\declaretheorem[style=thmbox, numbered=no, name=Theorem ]{inner*}
+
+
+\newenvironment{thm}[1][]{
+\ifstrempty{#1}
+{
+	\begin{inner}
+}
+{
+	\setcounter{inner}{#1-1}
+	\begin{inner}
+		\label{thm:\thechapter.#1}}}
+		{\end{inner}}
+
+\newenvironment{thm*}[1][]{
+\ifstrempty{#1}
+{
+	\begin{inner*}
+}
+{
+	\begin{inner*}[#1]
+		\label{#1}}
+		}
+		{\end{inner*}}
 \usepackage{import}
 \usepackage{xifthen}
 \usepackage{pdfpages}
@@ -343,3 +384,4 @@
 \newcommand\localref[1]{\ref{\currentprefix:#1}}
 
 \newcommand*\eqreflocal[1]{\eqref{\currentprefix:#1}}
+

@@ -15,8 +15,7 @@ If $\{p_n\}$ does not converge to any $p$ then it is said to diverge.
 
 
 
-\begin{theorem}
-	\label{thm:3.3}
+\begin{thm}[3]
 	If ${s}_{n}$ and ${t}_{n}$ are sequences in $\C$ with ${s}_{n} \to s$ and ${t}_{n} \to t$, then the following hold:
 	\begin{enumerate}
 		\item ${s}_{n} + {t}_{n} \to s + t$
@@ -24,7 +23,7 @@ If $\{p_n\}$ does not converge to any $p$ then it is said to diverge.
 		\item $s_n t_n\to st$
 		\item $\frac{1}{s_n}\to \frac{1}{s}$ if $s\neq 0$
 	\end{enumerate}
-\end{theorem}
+\end{thm}
 
 \begin{lemma}[Squeeze Lemma]
 	\label{lem:3.4}
@@ -34,8 +33,7 @@ If $\{p_n\}$ does not converge to any $p$ then it is said to diverge.
 	\end{proof}
 \end{lemma}
 
-\begin{theorem}
-	\label{thm:3.20}
+\begin{thm}[20]
 	\begin{enumerate}[label=(\alph*)]
 		\item If $p>0$ then $\frac{1}{n^{p}} \to 0$.
 		      \begin{proof}
@@ -53,7 +51,7 @@ If $\{p_n\}$ does not converge to any $p$ then it is said to diverge.
 		\item $\sqrt[n]{n}\to 1$
 		      \begin{proof}
 			      Let $x_n=\sqrt[n]{n}-1>0$, for $n\ge 2$.
-			      $n=(x_n+1)^{n}=\sum_{k=0}^{n}{\binom{n}{k}(x_k)^{k}}>\binom(n,2){x_n}^{2}=\frac{n(n-1)}{2} x_n ^2$. Therefore, $x_n \le \sqrt{\frac{2}{n-1}}$.
+			      $n=(x_n+1)^{n}=\sum_{k=0}^{n}{\binom{n}{k}(x_k)^{k}}>\binom{n}{2}{x_n}^{2}=\frac{n(n-1)}{2} x_n ^2$. Therefore, $x_n \le \sqrt{\frac{2}{n-1}}$.
 		      \end{proof}
 		\item If $p>0$ and $\alpha \in \R$, then $\frac{n^{\alpha}}{(1+p)^{n}}\to 0$; i.e., Exponentials beat powers.
 		      \begin{proof}
@@ -68,10 +66,9 @@ If $\{p_n\}$ does not converge to any $p$ then it is said to diverge.
 			      \end{proof}
 		      \end{proof}
 	\end{enumerate}
-\end{theorem}
+\end{thm}
 
-\begin{theorem}
-	\label{thm:3.2}. Let $\{p_n\}$ be a sequence in $(X,d)$.
+\begin{thm}[2]
 	\begin{enumerate}[label=(\alph*)]
 		\item $p_n\to p \Leftrightarrow \forall_{r >0}: N_r(p)$ contains all but finitely many $p_n$.
 		      \begin{proof}
@@ -93,7 +90,7 @@ If $\{p_n\}$ does not converge to any $p$ then it is said to diverge.
 			      Let $\epsilon>0$. Then $d(p,p_n)<\epsilon$ if $n>\frac{1}{\epsilon}$
 		      \end{proof}
 	\end{enumerate}
-\end{theorem}
+\end{thm}
 
 \begin{definition}
 	\label{def:3.5}
@@ -109,8 +106,7 @@ If $\{p_n\}$ does not converge to any $p$ then it is said to diverge.
 \end{lemma}
 
 
-\begin{theorem}
-	\label{thm:3.6}
+\begin{thm}[6]
 	\begin{enumerate}
 		\item $\{p_n\}$ in $X$, $X$ compact, then $\exists$ convergent subsequence.
 		      \begin{proof}
@@ -125,7 +121,7 @@ If $\{p_n\}$ does not converge to any $p$ then it is said to diverge.
 		      \end{proof}
 
 	\end{enumerate}
-\end{theorem}
+\end{thm}
 
 \begin{definition}[Cauchy Sequence]
 	$\{p_n\}$ is a Cauchy sequence in $(X,d)$ if $\forall{\epsilon}: \exists_{N \in \N} \text{ s.t. } d(p_{m},p_{n})<\epsilon \forall m,n\ge N$.
@@ -138,8 +134,7 @@ If $\{p_n\}$ does not converge to any $p$ then it is said to diverge.
 	\end{example}
 
 \end{definition}
-\begin{theorem}
-	\label{thm:3.11}
+\begin{thm}[11]
 	\begin{enumerate}
 		\item
 		      \label{thm:3.11a}
@@ -161,7 +156,7 @@ If $\{p_n\}$ does not converge to any $p$ then it is said to diverge.
 		\item Suppose $\{p_{n}\} $ in $\R^{k}$ is Cauchy. Cauchy sequences are bounded in any metric space. Therefore, $\exists$ $k$-cell $I$, which is compact, containing $\{p_{n}\}$. Then (b) applies
 	\end{proof}
 
-\end{theorem}
+\end{thm}
 \begin{note}
 	The converse of Theorem~\ref{thm:3.11}(a) does not hold in general.
 	\begin{example}
@@ -213,8 +208,7 @@ However the converse does hold for monotonic sequences.
 	\end{itemize}
 \end{definition}
 
-\begin{theorem}
-	\label{thm:3.14}
+\begin{thm}[14]
 	A monotone sequence in $\R$ converges if and only if it is bounded.
 	\begin{proof}
 		\begin{description}
@@ -228,7 +222,7 @@ However the converse does hold for monotonic sequences.
 			      \end{description}
 		\end{description}
 	\end{proof}
-\end{theorem}
+\end{thm}
 
 
 \begin{definition}[Infinite Limits]
@@ -297,12 +291,12 @@ However the converse does hold for monotonic sequences.
 	Form a new sequence $\{ {s}_{n}\}$, the sequence of partial sums, by $s_{n}=a_1+a_2+\ldots +a_{n}=\sum_{k=1}^{n}{a_{k}}$. If $s_n \to s$, we say \textbf{ the series $\sum_{k=1}^{\infty }{a_{k}}$ converges} and that $\sum_{k=1}^{\infty }{a_{k}}=s$. If $\{ {s}_{n}\}$ diverges then we say $\sum_{k=1}^{\infty }{a_{k}}$ diverges.
 \end{definition}
 
-\begin{theorem}
+\begin{thm}
 	$\sum_{n \in \N}{a_{n}}$ converges if and only if $\forall_{\epsilon >0}: \exists N \text{ s.t. }\forall{n\ge m\ge  N}: |\sum_{k=m}^{n}{a_{k}}| <\epsilon $.
 	\begin{proof}
 		$\sum_{n}{a_{n}}$ converges $\Leftrightarrow $ $\{ {s}_{n}\}$ converges $\Leftrightarrow$ $\{ {s}_{n}\}$ is a Cauchy sequence ($\because\; \C$ is compact). Use $s_{n}-s_{m-1}=\sum_{k=m}^{n}{a_k}$.
 	\end{proof}
-\end{theorem}
+\end{thm}
 \begin{corollary}
 	\label{cor:3.23}
 	If $\sum_{n}{a_{n}}$ converges then $a_{n}\to 0$.
@@ -318,16 +312,14 @@ However the converse does hold for monotonic sequences.
 	\end{remark}
 \end{corollary}
 
-\begin{theorem}
-	\label{thm:3.24}
+\begin{thm}[24]
 	If $a_{n}\ge 0$ , then $\sum_{n}{a_{n}}$ converges if and only if $\{ {s}_{n}\}$ is bounded.
 	\begin{proof}
 		$\{ {s}_{n}\}$ is monotone increasing, so by Theorem~\ref{thm:3.14}, it converges if and only if it is bounded.
 	\end{proof}
-\end{theorem}
+\end{thm}
 
-\begin{theorem}[Comparison Test]
-	\label{thm:3.25}
+\begin{thm}[25][Comparison Test]
 	\begin{enumerate}[label=(\alph*)]
 		\item If $|a_{n}| \le c_n \forall n\ge N_0$ and $\sum_{n}{c_{n}}$ converges, then $\sum_{n}{a_{n}}$ converges.
 		      \begin{proof}
@@ -338,10 +330,9 @@ However the converse does hold for monotonic sequences.
 			      This follows from (a): if $\sum_{n}{a_{n}}$ converges then $\sum_{n}{d_{n}}$ converges. Thus it's contrapositive, (b) is true.
 		      \end{proof}
 	\end{enumerate}
-\end{theorem}
+\end{thm}
 
-\begin{theorem}[Geometric Series]
-	\label{thm:3.26}
+\begin{thm}[26][Geometric Series]
 	$\sum_{n=0}^{\infty }{x^{n}}=
 		\begin{cases}
 			\frac{1}{1-x}   & \text{if $-1<x<1$} \\
@@ -355,12 +346,11 @@ However the converse does hold for monotonic sequences.
 		\]
 		If $|x|<1 (\Leftrightarrow -1<x<1)$, then $x^{n+1}\to 0$ and $S_n\to \frac{1}{1-x}$. If $|x|\ge 1$, then $x^{n+1}$ does not converge to 0, so $\sum_{n=0}^{\infty}{x^{n}}$ diverges.
 	\end{proof}
-\end{theorem}
+\end{thm}
 
 
 
-\begin{theorem}
-	\label{thm:3.27}
+\begin{thm}[27]
 	Suppose $a_1\ge a_2\ge a_3\ge \cdots \ge 0$. Then $\sum_{n=1}^{\infty}{a_{n}}$ converges $\Leftrightarrow $ $\sum_{k=1}^{\infty}{2^{k}a_{2^{k}}}$ converges.
 	\begin{proof}
 		\begin{description}
@@ -377,25 +367,23 @@ However the converse does hold for monotonic sequences.
 			      If $\sum_{n}{a_{n}}$ converges, then LHS is bounded for all $n$ so RHS is bounded for all $k$. Hence RHS converges since it is monotone.
 		\end{description}
 	\end{proof}
-\end{theorem}
+\end{thm}
 
-\begin{theorem}[$p$-series]
-	\label{thm:3.28}
+\begin{thm}[28][$p$-series]
 	$\sum_{n=1}^{\infty }{\frac{1}{n^{p}}}$ converges if $p>1$ and diverges if $p\le 1$.
 	\begin{proof}
 		For $p\le 0$, $\frac{1}{n^{p}} \not \to 0$, so series diverges.
 		For $p>0$, $\frac{1}{n^{p}}$ is decreasing, so $\sum_{n=1}{\frac{1}{n^{p}}}$ converges iff $\sum_{k}{2^{k} \cdot \frac{1}{(2^{k})^{p}}}$ converges.
 		But $\sum_{k}{2^{k}\cdot \frac{1}{(2^{k})^{p}}}=\sum_{k}{(\frac{1}{2^{p-1}})^{k}}$ converges iff $\frac{1}{2^{p-1}}<1(\Leftrightarrow p-1>0)$, which is equivalent to $p>1$.
 	\end{proof}
-\end{theorem}
-\begin{theorem}
-	\label{thm:3.29}
+\end{thm}
+\begin{thm}[29]
 	$\sum_{n=3}^{\infty }{\frac{1}{n(\log{n})^{p}}}$ converges if $p>1$ and diverges if $p\le 1$. ($\log$ is to base $e$.)
 	\begin{proof}
 		If $p\le 0$, then $\frac{1}{n (\log{n})^{p}}\ge \frac{1}{n}$, so $\sum_{n}{\frac{1}{n(\log{n})^{p}}}$ diverges by the comparison test.
 		If $p>0$ then $\frac{1}{n(\log{n})^{p}}$ decreases since $\log{n}$ increases. By theorem~\ref{thm:3.27}, $\sum_{n}{\frac{1}{n(\log{n})^{p}}}$ converges $\Leftrightarrow \sum_{k}{2^{k} \cdot \frac{1}{2^{k}(\log{2^{k}})^{p}}}$ converges  $\Leftrightarrow $  $\sum_{k}{\frac{1}{(\log{2})^{p}} \cdot \frac{1}{k^p}}$ converges $\Leftrightarrow $ $p>1$
 	\end{proof}
-\end{theorem}
+\end{thm}
 
 \begin{definition}[e]
 	$e:= \sum_{n=0}^{\infty}{\frac{1}{n!}}$.
@@ -415,18 +403,16 @@ However the converse does hold for monotonic sequences.
 	\end{remark}
 \end{definition}
 
-\begin{theorem}
-	\label{thm:3.32}
+\begin{thm}[32]
 	$e \not\in \Q$.
 	\begin{proof}
 		For contradiction, suppose $e=\frac{p}{q}, p,q \in \N$.
-		Then  $0<e-S_q<\frac{1}{q\cdot q!}$, so $0<q!\cdot e - q! \cdot S_q< \frac{1}{q}$. If $q! \cdot e - q! \cdot S_q \in \Z$, $q! \cdot e - q! \cdot S_q$ is an integer between $0$ and $1$, which is a contradiction.
-		But $q! \cdot e - q! \cdot S_q=q! \cdot \frac{p}{q} - \sum_{k=0}^{q}{\frac{q!}{k!}}$. Because $q! \cdot \frac{p}{q} \in \N$ and $\sum_{k=0}^{q}{\frac{q!}{k!}} \in \N$, the difference of them, $q! \cdot e - q! \cdot S_q \in \Z$, thus a contradiction.
+		As $0<e-S_q<\frac{1}{q\cdot q!}$, $0<q!\cdot e - q! \cdot S_q< \frac{1}{q}$. Since $S_q=\sum_{k=0}^{q}{\frac{1}{k!}}$, $q!\cdot e$ and $S_q \cdot q!$ are both integers.
+		However, then $q! \cdot e - q! \cdot S_q$ is an integer between $0$ and $\frac{1}{q}<1$, which is a contradiction.
 	\end{proof}
-\end{theorem}
+\end{thm}
 
-\begin{theorem}
-	\label{thm:3.31}
+\begin{thm}[31]
 	$e= \lim_{n\to \infty}{(1+\frac{1}{n})^{n}}$.
 	\begin{proof}
 		Let $t_n=(1+\frac{1}{n})^{n}$. Then $t_n= \sum_{k=0}^{n}{\binom{n}{k} \cdot \frac{1}{n^{k}}}= \sum_{k=0}^{n}{\frac{1}{k!} \cdot (\frac{n}{n} \cdot \frac{n-1}{n} \cdots \frac{n-k+1}{n})} \le S_n$. So $\limsup_{n\to \infty}{t_n}\le \limsup_{n\to \infty}{S_n}=\lim_{n\to \infty}{S_n}=e$.
@@ -436,10 +422,9 @@ However the converse does hold for monotonic sequences.
 		$e \le \liminf_{n\to \infty}{t_{n}} \le \limsup_{n\to \infty}{t_{n}}\le e$.
 		Therefore, $\lim_{n\to \infty}{t_{n}}$ exists and equals $e$.
 	\end{proof}
-\end{theorem}
+\end{thm}
 
-\begin{theorem}[Root test]
-	\label{thm:3.33}
+\begin{thm}[33][Root test]
 	Let $\alpha=\limsup_{n\to \infty}{\sqrt[n]{|a_n|}}$. Then,
 	\[
 		\sum{a_{n}}
@@ -460,9 +445,8 @@ However the converse does hold for monotonic sequences.
 			      $\frac{1}{n}$ diverges, $\frac{1}{n^2}$ converges.
 		\end{description}
 	\end{proof}
-\end{theorem}
-\begin{theorem}[Ratio test]
-	\label{thm:3.34}
+\end{thm}
+\begin{thm}[34][Ratio test]
 	The series $\sum_{n=1}^{\infty}{a_{n}}$ with $a_{n}\neq 0$ converges if $\limsup_{n\to \infty}{|\frac{a_{n+1}}{a_{n}}|}<1$ and diverges if $\exists_{N \in \N} \text{ s.t. } \forall_{n \ge  N}:  |\frac{a_{n+1}}{a_{n}}|\ge 1 $. Otherwise, inconclusive.
 	\begin{proof}
 		(see textbook).\\
@@ -482,7 +466,7 @@ However the converse does hold for monotonic sequences.
 			For inconclusive case, check $\sum{1/n}\to \infty$ and $\sum{1/n^2}\to \pi ^2 /6$
 		\end{note}
 	\end{proof}
-\end{theorem}
+\end{thm}
 
 
 
@@ -504,10 +488,9 @@ However the converse does hold for monotonic sequences.
 	This is an example where the ratio test is inconclusive but the root test is conclusive.
 \end{example}
 
-\begin{theorem}
-	\label{thm:3.47}
+\begin{thm}[47]
 	If $\sum{a_{n}}=A$ and $\sum{b_{n}}=B$, then $\sum{a_{n} + b_{n}}=A+B$ and $\sum{c \cdot a_{n}}=c  A$.
-\end{theorem}
+\end{thm}
 
 \section{Power Series}
 \begin{definition}[Power Series]
@@ -518,20 +501,19 @@ However the converse does hold for monotonic sequences.
 	\end{remark}
 \end{definition}
 
-\begin{theorem}
-	\label{thm:3.39}
-	Let $R=\frac{1}{\limsup_{n\to \infty}{\sqrt[n]{|c_{n}|}}}$ such that
+\begin{thm}[39]
+	Let $R=\frac{1}{\limsup_{n\to \infty}{\sqrt[n]{|c_{n}|}}}$, where
 	\[
 		R= \begin{cases}
-			0 & \text{if } \limsup_{n\to \infty}{\sqrt[n]{|c_{n}|}}=\infty \\
-			% \infty                                             & \text{if } \limsup_{n\to \infty}{\sqrt[n]{|c_{n}|}}=0        \\
-		\end{cases}
-	\].
+			0      & \text{if } \limsup_{n\to \infty}{\sqrt[n]{|c_{n}|}}=\infty \\
+			\infty & \text{if } \limsup_{n\to \infty}{\sqrt[n]{|c_{n}|}}=0      \\
+		\end{cases}.
+	\]
 	Then $\sum{c_{n}z^{n}} \begin{cases}
 			\text{converges}    & \text{if } |z|<R \\
 			\text{diverges}     & \text{if } |z|>R \\
 			\text{inconclusive} & \text{if } |z|=R
-		\end{cases}$
+		\end{cases}$. Note $R=0$ implies the series diverges for $z\neq 0$, and $R=\infty$ implies the series converges for any $z \in \C$.
 	\begin{proof}
 		$\limsup_{n\to \infty}{\sqrt[n]{|c_{n}z^{n}|}}=|z| \cdot \limsup_{n\to \infty}{\sqrt[n]{|c_{n}|}}=\frac{|z|}{R}$.
 		By root test, the series converges if $\frac{|z|}{R}<1$ and diverges if $\frac{|z|}{R}>1$.
@@ -539,14 +521,14 @@ However the converse does hold for monotonic sequences.
 			In practice, often use the ratio test to find $R$.
 		\end{note}
 	\end{proof}
-\end{theorem}
+\end{thm}
 
 \begin{example}
 	\begin{enumerate}
 		\item $\sum{n! \cdot z^{n}}$ has $R=0$.
 		      \begin{description}
 			      \item [By ratio test]
-			            $\left| \frac{(n+1)! \cdot z^{n+1}}{n! \cdot z^{n}} \right|=|z|\cdot(n+1) \to \infty \forall z\neq 0$. Hence, the series diverges $\forall z \neq 0$.
+			            $\forall z \neq 0: \left| \frac{(n+1)! \cdot z^{n+1}}{n! \cdot z^{n}} \right|=|z|\cdot(n+1) \to \infty$. Hence, the series diverges .
 			      \item[By root test]
 			            Note $n\neq \frac{1}{2}(\frac{2}{3})^{2}(\frac{3}{4})^{3} \cdots (\frac{n-1}{n})^{n-1} n^{n}$ for $n\ge 2$.
 			            Then $n\neq  \frac{n^{n}}{(1+1)^{1}(1+\frac{1}{2})^{2}(1+\frac{1}{n-1})^{n-1}}$. In the proof of Theorem~\ref{thm:3.31}, we saw $(1+\frac{1}{j})\le e$. So $n! \ge \frac{n^{n}}{e^{n-1}}=e \cdot (\frac{n}{e})^{n}$.
@@ -581,26 +563,24 @@ However the converse does hold for monotonic sequences.
 	\end{itemize}
 \end{example}
 
-\begin{remark}
-	Conditionally convergent series have a bad feature.
-\end{remark}
+\begin{thm}[45]
+	If $\sum{a_{n}}$ converges absolutely, then $\sum{a_{n}}$ converges.
+\end{thm}
 
-\begin{theorem}[Thm 3.54]
-	\label{thm:3.54}
+\begin{thm}[54]
 	Suppose $\sum_{}{a_{n}}$ converges conditionally.
 	Let $-\infty\le \alpha\le \beta\le +\infty$. Then $\exists \text{bijection }f: \N\to \N$ such that with $a'_{n}=a_{f(n)}$ and $S'_n=\sum_{k=1}^{n}{a'_k}$, $\liminf_{n\to \infty}{s'_n}=\alpha$ and $\limsup_{n\to \infty}{s'_n}=\beta$. In other words, there exists a rearrangement of $\sum{a_n}$, say $\sum{a'_n}$, such that $\liminf_{n\to \infty}{\sum{a'_n}}=\alpha, \limsup_{n\to \infty}{\sum{a'_n}}=\beta$.
 	\begin{proof}
 		Take a look at the textbook
 	\end{proof}
-\end{theorem}
+\end{thm}
 
-\begin{theorem}[Thm 3.55]
-	\label{thm:3.55}
+\begin{thm}[55]
 	If $\sum{a_{n}}$ converges absolutely, then every rearrangement of $\sum{a_{n}}$ converges to the same sum.
 	\begin{proof}
 		Take a look at the textbook
 	\end{proof}
-\end{theorem}
+\end{thm}
 
 \section{Products of Series}
 \paragraph{Motivation}
@@ -620,8 +600,7 @@ If $\sum_{}{a_{n}}=A$ and $\sum_{}{b_{n}}=B$ both converge, does $\sum_{}{c_{n}}
 \paragraph{Answer}
 $\sum_{}{c_{n}}$ converges if $\sum_{}{a_{n}}$ and $\sum_{}{b_{n}}$ converge absolutely. (ref: Thm~\ref{thm:3.50}). Moreover, if $\sum_{}{c_{n}}$ does converge, then it must converge to $AB$ (ref: Thm 3.51). Maybe no otherwise (ref: Example 3.49).
 
-\begin{theorem}[Thm 3.50]
-	\label{thm:3.50}
+\begin{thm}[50]
 	Suppose $\sum_{}{a_{n}}$ converges absolutely to $A$ and $\sum_{}{b_{n}}$ converges to $B$. Then $\sum_{}{c_n}$ converges to $AB$.
 	\begin{proof}
 		Let $A_{n}=\sum_{k=0}^{n}{a_{k}}$, $B_{n}=\sum_{k=0}^{n}{b_{k}}$, $C_{n}=\sum_{k=0}^{n}{c_{k}}$.
@@ -635,6 +614,6 @@ $\sum_{}{c_{n}}$ converges if $\sum_{}{a_{n}}$ and $\sum_{}{b_{n}}$ converge abs
 		Then for $n\ge N+1$, $|\gamma_n|\le |\sum_{j=0}^{N}{a_{n-j}\beta_j}|+|\sum_{j=N+1}^{n}{a_{n-j}\beta_j}|$. Note $|\sum_{j=N+1}^{n}{a_{n-j}\beta_j}| \le \epsilon \sum_{j=N+1}^{n}{|a_{n-j}|}\le \epsilon \alpha$.
 		Let $n\to \infty$ with $N$ fixed. Then $a_{n-j}\to 0$ for $0 \le j \le N$ since $|a_{n}|\to 0$.
 	\end{proof}
-\end{theorem}
+\end{thm}
 
 Midterm 2 covers up to this point (TB p.36-82, A.5-8)
