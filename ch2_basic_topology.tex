@@ -303,6 +303,10 @@
 	\end{proof}
 \end{thm}
 
+\begin{theorem}[28]
+	Let $E$ be a nonempty set of real numbers which is bounded above. Let $y=\sup\{E\}$. Then $y \in \overline{E}$. Hence, $y \in E$ if $E$ is closed.
+\end{theorem}
+
 \begin{example}
 	Let $X=\R , d(p,q)=|p-q|$. Let $E \subset \R $ be nonempty and bounded above, and let $y=\sup E$. Then $y \in \overline{E}$.
 	\begin{proof}
@@ -381,7 +385,7 @@
 \begin{thm}[35]
 	If $F$ is closed, $K$ is compact, and $F \subset K$ then $F$ is compact.
 	\begin{proof}
-		Suppose $F \subset K$. let $\{V_{\alpha}\}$ be an open cover of $F$. It suffice to produce a finite subcover:\\
+		Suppose $F \subset K$. Let $\{V_{\alpha}\}$ be an open cover of $F$. It suffice to produce a finite subcover:\\
 		Consider $\{V_{\alpha}\}$ together with $F^{c}$. This gives an open cover of $X$, hence of $K$, so $\exists_{\text{subcover of $K$}}$.
 		Drop $F^{c}$ from this finite subcover. The result is a finite subcover of $\{V_{\alpha}\}$, which covers $F$
 	\end{proof}
@@ -408,14 +412,16 @@
 	\end{proof}
 \end{thm}
 \begin{thm}[36]
-	Suppose $\{K_\alpha\} $ is a collection of compact sets such that $\bigcap_{i \in \{1,2, \ldots, n\} } K_{\alpha_i} \neq \emptyset$. Then
-	$\lim_{n\to \infty}{\bigcap_{i \in \{1,2, \ldots ,n\}}K_{\alpha_i}}\neq \emptyset$, or equivalently, $\bigcap_{\alpha} K_{\alpha} \neq \emptyset $
+	Suppose $\{K_\alpha\} $ is a collection of compact sets such that $\bigcap_{i \in \{1,2, \ldots, n\} } K_{\alpha_i} \neq \emptyset$ for any $n<\infty, \alpha_i$. Then,
+	$\lim_{n\to \infty}{\bigcap_{i \in \{1,2, \ldots ,n\}}K_{\alpha_i}}\neq \emptyset$, or equivalently, $\bigcap_{\alpha} K_{\alpha} \neq \emptyset $.
 	\begin{example}
 		Let $G_j=(0,\frac{1}{j}) \subset \R$. Then $\{G_j\}$ is a collection of open sets, but none of them are compact. (compact sets are closed)
 		Then $\{G_j\}$ satisfies non-empty finite intersection property but $\bigcap_{j \in \N }G_j=\emptyset$.
 	\end{example}
 	\begin{proof}
-		Then $K_{\alpha_0} \cap \left( \bigcap_{\alpha\neq \alpha_0}K_{\alpha} \right)=\emptyset$, so $K_{\alpha_0} \subset \left( \bigcap_{\alpha\neq \alpha_0}K_{\alpha}\right)^{c}=\bigcup_{\alpha\neq \alpha_0}\left( K_{\alpha}\right)^{c} \text{ and } \{\left( K_{\alpha} \right)^{c}\}_{\alpha\neq \alpha_0}$ is an open cover of $K_{\alpha_0}$, so $\exists$ a finite subcover $K_{\alpha_0} \subset \bigcup_{i=1}^{n} {K_{\alpha_i}}^{c} $. But then, $K_{\alpha_0} \cap  \left(\bigcap_{i=1}^{n}K_{\alpha_i}   \right)=\emptyset  $, contradiction.
+		Suppose for contradiction $\bigcap_{i \in \{1,2, \ldots, n\} } K_{\alpha_i} \neq \emptyset$ for any $n<\infty, \alpha_i$ and $\bigcap_{\alpha}K_{\alpha}=\emptyset$.
+		For any $\alpha_0$, $K_{\alpha_0} \cap \left( \bigcap_{\alpha\neq \alpha_0}K_{\alpha} \right)=\emptyset$.
+		Hence, $K_{\alpha_0} \subset \left( \bigcap_{\alpha\neq \alpha_0}K_{\alpha}\right)^{c}=\bigcup_{\alpha\neq \alpha_0}\left( K_{\alpha}\right)^{c} \text{ and } \{\left( K_{\alpha} \right)^{c}\}_{\alpha\neq \alpha_0}$ is an open cover of $K_{\alpha_0}$, so $\exists$ a finite subcover of $K_{\alpha_0} \subset \bigcup_{i=1}^{n} {K_{\alpha_i}}^{c} $, which implies $K_{\alpha_0} \cap  \left(\bigcap_{i=1}^{n}K_{\alpha_i}   \right)=\emptyset  $, contradiction.
 	\end{proof}
 	\begin{corollary}
 		If $\{K_1,K_2, \ldots \} $ are non-empty compact sets with $\forall_{n}: K_n \supset K_{n+1}$, then $\bigcap_{n=1}^{\infty}K_n \neq \emptyset$.

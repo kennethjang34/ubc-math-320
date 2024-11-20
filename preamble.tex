@@ -177,7 +177,7 @@
 % \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, numbered=no, mdframed={ rightline=false, topline=false, bottomline=false, }, qed=\qedsymbol ]{thmproofbox}
 % \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, numbered=no, mdframed={ nobreak, rightline=false, topline=false, bottomline=false } ]{thmexplanationbox}
 
-\declaretheorem[style=thmgreenbox, name=Definition, numbered=no]{definition}
+\declaretheorem[style=thmgreenbox, name=Definition, numbered=yes,numberwithin=chapter]{definition}
 \declaretheorem[style=thmbluebox, numbered=no, name=Example]{eg}
 % \declaretheorem[style=thmbluebox, numbered=no, name=Example]{example}
 \declaretheorem[style=thmbox, name=Proposition, numbered=no]{prop}
@@ -190,8 +190,19 @@
 \declaretheorem[style=thmbox, name=Theorem, numbered=no]{theorem}
 \declaretheorem[style=thmproofbox, name=Proof]{replacementproof}
 
+\newenvironment{define}[1][]{
+\ifstrempty{#1}
+{
+	\begin{definition}
+}
+{
+	\setcounter{definition}{#1-1}
+	\begin{definition}
+		\label{def:\thechapter.#1}}}
+		{\end{definition}}
+
 \renewenvironment{proof}[1][]{
-\vspace{-10pt}
+% \vspace{-10pt}
 \ifstrempty{#1}{
 	\begin{replacementproof}
 }
@@ -210,7 +221,6 @@
 	\begin{inner}
 		\label{thm:\thechapter.#1}}}
 		{\end{inner}}
-
 \declaretheorem[style=thmexplanationbox, name=Proof]{tmpexplanation}
 \newenvironment{explanation}[1][]{\vspace{-10pt}\begin{tmpexplanation}}{\end{tmpexplanation}}
 
@@ -331,7 +341,6 @@
 	\begin{inner}
 		\label{thm:\thechapter.#1}}}
 		{\end{inner}}
-
 \newenvironment{thm*}[1][]{
 \ifstrempty{#1}
 {

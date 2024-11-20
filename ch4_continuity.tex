@@ -205,13 +205,13 @@ Assume general metric spaces $X,Y$ and $f: X\to Y$.
 	\end{proof}
 \end{example}
 
-\begin{definition}
+\begin{define}[18]
 	Let $X,Y$ be metric spaces and $f:X\to Y$.
 	$f$ is uniformly continuous on $X$ if $\forall_{\epsilon > 0}: \exists_{\delta > 0} \text{ s.t. } \text{ for all } p,q \in X$ with $d_x(p,q)<\delta$, we have $d_Y(f(p),f(q))<\epsilon$.
 	\begin{remark}
 		The point is for any $\epsilon$, there is some $\delta$ that works for every $p,q \in X$ such that $d(p,q)$.
 	\end{remark}
-\end{definition}
+\end{define}
 
 \begin{example}
 	\begin{enumerate}
@@ -226,3 +226,50 @@ Assume general metric spaces $X,Y$ and $f: X\to Y$.
 	\end{enumerate}
 \end{example}
 
+\begin{theorem}[19]
+	Suppose $X$ is a compact metric space, $Y$ is a metric space, and $f:X\to Y$ is continuous. Then $f$ is uniformly continuous.
+	\begin{proof}
+		Fix $\epsilon>0$. For $p \in X$ there exists $\delta=\delta_p(\epsilon)$ s.t. $d_{X}(p,q)<\delta_{p}\implies d_Y(f(p),f(q))<\frac{\epsilon}{2}$.
+		We need to remove the $p$-dependence of $\delta_p$.
+		Let $J_{p}=N_{\frac{1}{2}\delta_{p}}(p)$. Then $\{ {J}_{p}\}_{p \in X}$ is an open cover of $X$.
+		Then there exists subcover $X= J_{p_1} \cup J_{p_2}\cdots \cup J_{p_n}$ (equality works as $X$ is the whole metric space, so $X \subset J \implies X=J$).
+		Let $\delta=\min\{\frac{1}{2}\delta_{p_1},\frac{1}{2}\delta_{p_2},\ldots ,\frac{1}{2}\delta_{p_n}\}$.
+		Suppose $p,q$ with $d_{X}(p,q)<\delta$. Choose $m \in \{1,2,\ldots n\}$ s.t. $p \in J_{p_m}$. Then $d_{X}(p,p_{n})<\frac{1}{2}\delta_{p_{m}}$.
+		$d_X(q,p_{m})\le d_X(q,p)+d_{X}(p,p_{m})<\delta+\frac{1}{2}\delta p_{m}\le \delta p_m$.
+		$\therefore d_Y(f(q),f(p))\le d_Y(f(q),f(p_{m}))+d_Y(f(q_m),f(p))<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon$.
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[22]
+	If $X,Y$ are metric spaces, $f:X\to Y$ is continuous, and $E \subset X$ is connected, then $f(E)$ is connected.
+	\begin{proof}[By Contradiction]
+		Suppose for contradiction $E$ is connected and there exists $A,B \subset Y$ s.t. $f(E)=A \cap  B$, $f(E) \neq \emptyset$, $\overline{A} \cup B=A \cap \overline{B}=\emptyset$.
+		Let $G=f^{-1}(A) \cap E, H=f^{-1}(B)\cap E$. Then $E=G \cup H$, $G,H$ are nonempty.
+		If $G \cap \overline{H}=\overline{G} \cap H=\emptyset$, it leads to a contradiction.
+		First, $G \subset f^{-1}(A) \subset(\because A \subset \overline{A}) f^{-1}(\overline{A})$, where $f^{-1}(\overline{A})$ is closed by the corollary to Theorem~\ref{thm:4.8}, so $\overline{G} \subset f^{-1}(\overline{A})$.
+		Second, $f(H)=B, \overline{A} \cap B=\emptyset$.
+		Therefore, $\overline{G} \cap H =\emptyset$.
+		WLOG, $G \cap \overline{H} = \emptyset$ as well.
+		Hence a contradiction.
+	\end{proof}
+\end{theorem}
+
+\begin{theorem}[23][Intermediate Value Theorem]
+	Suppose $f: [a,b]\to \R$ is continuous. If $f(a)<f(b) \text{ and } c \in (f(a),f(b))$. Then $\exists_{x_0 \in (a,b)} \text{ s.t. } f(x_0)=c$.
+	\begin{proof}
+		$[a,b]$ is connected by Theorem~\ref{thm:2.47}. Hence, by Theorem~\ref{thm:4.22}, $f([a,b])$ is connected and therefore contains all points between $f(a)$ and $f(b)$. In particular, $c \in f((a,b))$
+	\end{proof}
+\end{theorem}
+
+\begin{example}
+	\begin{enumerate}
+		\item there exists a continuous function called (Peano/space-filling curve) from $[0,1]$ onto the closed unit square $S=[0,1]\times [0,1] \subset \R^2$.
+		      \begin{proof}
+			      See Rudin, problem $7.14$ for an explicit example(covered in MATH-321).
+		      \end{proof}
+		\item But no such function can be one-to-one.
+		      \begin{proof}
+
+		      \end{proof}
+	\end{enumerate}
+\end{example}
