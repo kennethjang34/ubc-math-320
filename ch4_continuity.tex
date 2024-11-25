@@ -1,7 +1,7 @@
 \chapter{Continuity}
 Assume general metric spaces $X,Y$ and $f: X\to Y$.
-\begin{definition}[Definition 4.1]
-	\label{def:4.1}
+\begin{definition}[4.1]
+	% \label{def:4.1}
 	Suppose $X,Y$ are metric spaces, $E \subset X$, $f: E\to Y$, $p \in E'$, where $E'$: set of limit points in metric space $X$.
 	We say $\lim_{x\to p}{f(x)}=q$, or $f(x)\to q$ as $x\to p$, if $\forall_{\epsilon > 0}: \exists_{\delta>0} \text{ s.t. } (0<d_X(x,p)<\delta \text{ and } x \in E) \implies d_Y(f(x),q)<\epsilon $.
 	\begin{note}
@@ -72,7 +72,7 @@ Assume general metric spaces $X,Y$ and $f: X\to Y$.
 	% \end{note}
 \end{theorem}
 
-\begin{theorem}[8][Theorem 4.8: Topological Characterization of Continutiy]
+\begin{theorem}[8][Topological Characterization of Continuity]
 	$f: X\to Y$ is continuous $\Leftrightarrow  f^{-1}(V)$ is open for every open $V \subset Y$.
 	\begin{proof}
 		\begin{description}
@@ -265,11 +265,13 @@ Assume general metric spaces $X,Y$ and $f: X\to Y$.
 	\begin{enumerate}
 		\item there exists a continuous function called (Peano/space-filling curve) from $[0,1]$ onto the closed unit square $S=[0,1]\times [0,1] \subset \R^2$.
 		      \begin{proof}
-			      See Rudin, problem $7.14$ for an explicit example(covered in MATH-321).
+			      Omitted. See Rudin's problem $7.14$ for an explicit example(covered in MATH-321).
 		      \end{proof}
 		\item But no such function can be one-to-one.
 		      \begin{proof}
-
+			      Suppose $f:[0,1]\to S$ is 1-1, onto, continuous. Since $[0,1]$ is compact, $f^{-1}$ is continuous by Theorem~\ref{4.17}
+			      Let $E=[0,\frac{1}{2})\cup (\frac{1}{2,1}]$. Then, $f(E)=S\setminus \{f(\frac{1}{2})\}$ is $S$ minus one point, which is connected (pf omitted).
+			      But then, $f^{-1}(f(E))=E$ must be connected by Theorem~\ref{thm:4.22}. $E$ is not connected, so this is a contradiction.
 		      \end{proof}
 	\end{enumerate}
 \end{example}

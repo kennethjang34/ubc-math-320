@@ -3,6 +3,7 @@
 \usepackage{enumitem}
 \makeatletter
 \usepackage{listings}
+\usepackage{xstring}
 
 
 % basics
@@ -178,17 +179,44 @@
 % \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, numbered=no, mdframed={ nobreak, rightline=false, topline=false, bottomline=false } ]{thmexplanationbox}
 
 \declaretheorem[style=thmgreenbox, name=Definition, numbered=yes,numberwithin=chapter]{definition}
+\declaretheorem[style=thmgreenbox, name=Definition, numbered=no]{definition*}
 \declaretheorem[style=thmbluebox, numbered=no, name=Example]{eg}
 % \declaretheorem[style=thmbluebox, numbered=no, name=Example]{example}
+\declaretheorem[style=thmbox, name=theorem, numbered=yes,numberwithin=chapter]{theorem}
 \declaretheorem[style=thmbox, name=Proposition, numbered=no]{prop}
 \declaretheorem[style=thmbox, name=Lemma, numbered=no]{lemma}
 \declaretheorem[style=thmbox, name=Lemma, numbered=no]{Lemma}
 \declaretheorem[style=thmbox, name=Proposition, numbered=no]{proposition}
 \declaretheorem[style=thmbox, name=Proposition, numbered=no]{Proposition}
-\declaretheorem[style=thmbox, numbered=no, name=Corollary]{Corollary}
-\declaretheorem[style=thmbox, numbered=no, name=Corollary]{corollary}
-\declaretheorem[style=thmbox, name=Theorem, numbered=no]{theorem}
+\declaretheorem[style=thmbox, numbered=no, name=Corollary]{Corollary*}
+\declaretheorem[style=thmbox, numbered=no, name=Corollary]{corollary*}
+\declaretheorem[style=thmbox, numbered=yes, name=Corollary,sibling=theorem]{Corollary}
+\declaretheorem[style=thmbox, numbered=yes, name=Corollary,sibling=theorem]{corollary}
 \declaretheorem[style=thmproofbox, name=Proof]{replacementproof}
+\renewenvironment{definition}[1][]{
+\def\argI{#1}
+\ifstrempty{#1}
+{
+	\begin{definition*}
+}
+{
+	\IfInteger{#1}{
+		\setcounter{definition}{#1-1}
+		\begin{definition}
+		\label{def:\thechapter.#1}
+	}
+	{
+		\begin{definition*}[#1]
+			\label{def:#1}
+			}
+			}
+			}
+			{
+			\IfInteger{\argI}{
+			\end{definition}}
+			{
+		\end{definition*}
+	}}
 
 \newenvironment{define}[1][]{
 \ifstrempty{#1}
@@ -327,8 +355,8 @@
 \newcommand{\getCurrentChapterNumber}{%
 	\thechapter
 }
-\declaretheorem[style=thmbox, numbered=yes, name=Theorem, numberwithin=chapter]{inner}
-\declaretheorem[style=thmbox, numbered=no, name=Theorem ]{inner*}
+\declaretheorem[style=thmbox, numbered=yes, name=Theorem, sibling=theorem]{inner}
+\declaretheorem[style=thmbox, numbered=no, name=Theorem]{inner*}
 
 
 \newenvironment{thm}[1][]{

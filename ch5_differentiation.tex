@@ -1,0 +1,49 @@
+\chapter{Differentiation}
+We consider $f:[a,b]\to \R$.
+
+\begin{definition}
+	For $f: [a,b]\to \R$ and $x \in [a,b]$, let $f'(x)=\lim_{t\to x}{f(t)-f\frac{x}{t-x}}$ if limit exists.
+	Equivalently, $f(t)=f(x)+(t-x)[f'(x)+u(x,t)]$ with $\lim_{t\to x}{u(x,t)}=0$.
+\end{definition}
+
+\begin{example}
+	\begin{enumerate}[label=(\alph*)]
+		\item $f(x)=c \; \text{ for all } x \implies f'(x)=\lim_{t\to x}{\frac{c-c}{t-x}}=0$.
+		\item $f(x)=x\; \text{ for all }x\implies f'(x)=\lim_{t\to x}{\frac{t-x}{t-x}}$
+		\item $f(x)=e^{x}:=\sum_{n=0}^{\infty}{\frac{x^{n}}{n!}}$.
+		      Write $t=x+h$, so $t\to x \Leftrightarrow h\to 0$.
+		      $\frac{e^{x+h}-e^{x}}{(x+h)-x}=e^{x}\frac{e^{h}-1}{h}=e^{x}\frac{e^{h}-1}{h}+e^{x}-e^{x}=e^{x}+e^{x}\frac{e^{h}-1-h}{h}$.
+		      Let $u(h)=\frac{e^{h}-1-h}{h}$. Then $u(h)=\frac{1}{h}\sum_{n=2}^{\infty}{\frac{h^{n}}{n!}}$, so $|u(h)|=|\frac{1}{h}\sum_{n=2}^{\infty}{\frac{h^{n}}{n!}}|\le |h| \sum_{n=2}^{\infty}{\frac{1}{n!}}=(e-2)|h|$ (note for $n\ge 2, |h^{n-1}|\le |h|$ if $|h|\le 1$). Hence, $u(h)\to \infty$ as $h\to 0$ and therefore $f'(x)=e^{x}$.
+		      \begin{remark}
+			      $e^{x}:=\sum_{n=0}^{\infty}{\frac{x^{n}}{n!}}$ is well defined.
+			      $e^{1}=\sum_{n=0}^{\infty}{\frac{1}{n!}}=e$. Regarding it as a power series, its radius of convergence is $R=\infty$. Also, $e^{x+y}=e^{x}e^{y}$ using definition 3.48 of product series (Rudin's p.178-180).
+		      \end{remark}
+		      \begin{note}
+			      $f'(x)$: Lagrange's notation, $\frac{df}{dx}$: Leibnitz notation
+		      \end{note}
+	\end{enumerate}
+\end{example}
+
+\begin{thm}[2]
+	Suppose $f:[a,b]\to \R$ and $f'(x)$ exists. Then $f$ is continuous at $x$.
+	\begin{proof}
+		The existence of $f'(x) \Leftrightarrow f(t)=f(x)+(t-x)[f'(x)+u(x,t)]$ with $\lim_{t\to x}{u(x,t)}=0$. Let $t\to x$. $\lim_{t\to x}{f(x)+(t-x)[f'(x)+u(x,t)]}=f(x)+0[f'(x)+0]=f(x)$, so $\lim_{t\to x}{f(t)}=f(x)$; i.e., $f$ is continuous at $x$.
+	\end{proof}
+	\begin{remark}
+		The converse is false; e.g., $f(x)=|x|$ is continuous for all $x$, but $f'(0)$ does not exist.
+	\end{remark}
+\end{thm}
+
+\begin{thm}[3]
+	If $f:[a,b]\to \R$ and $g:[a,b]\to \R$ are both differentiable at $x$ then so are $f+g,fg,\frac{f}{g}(\text{ if } g(x)\neq 0)$, and $(f+g)'(x)=f'(x)+g'(x),(fg)'(x)=f'(x)g(x)+f(x)g'(x),(\frac{f}{g})'(x)=\frac{f'(x)g(x)-g'(x)f(x)}{g(x)^2}$.
+\end{thm}
+\begin{proof}[Only the quotient rule]
+	$h(t)-h(x)=\frac{f(t)}{g(t)}-\frac{f(x)}{g(x)}=\frac{1}{g(t)g(x)}[(f(t)g(x)-f(x)g(x))-(f(x)g(t)-f(x)g(x))]$.\\
+	Then $\frac{h(t)-h(x)}{t-x}=\frac{1}{g(t)g(x)}\left[ \frac{f(t)-f(x)}{t-x}g(x)-f(x)\frac{g(t)-g(x)}{t-x} \right]$.
+	Let $t\to x$. $h'(x)=\frac{1}{g(x)^2}\left[ f'(x)g(x)-f(x)g'(x) \right] ]$.
+\end{proof}
+\begin{remark}
+	By induction, $(f_1\cdots f_n)'=f_1'f_2\cdots f_n+f_1 f_2'f_3\cdots f_n+ \cdot f_1 f_2 \cdots f_n'$.
+\end{remark}
+
+
