@@ -35,8 +35,7 @@ We consider $f:[a,b]\to \R$.
 \end{thm}
 
 \begin{thm}[3]
-	If $f:[a,b]\to \R$ and $g:[a,b]\to \R$ are both differentiable at $x$ then so are $f+g,fg,\frac{f}{g}(\text{ if } g(x)\neq 0)$, and $(f+g)'(x)=f'(x)+g'(x),(fg)'(x)=f'(x)g(x)+f(x)g'(x),(\frac{f}{g})'(x)=\frac{f'(x)g(x)-g'(x)f(x)}{g(x)^2}$.
-\end{thm}
+	If $f:[a,b]\to \R$ and $g:[a,b]\to \R$ are both differentiable at $x$ then so are $f+g,fg,\frac{f}{g}(\text{ if } g(x)\neq 0)$, and $(f+g)'(x)=f'(x)+g'(x),(fg)'(x)=f'(x)g(x)+f(x)g'(x),(\frac{f}{g})'(x)=\frac{f'(x)g(x)-g'(x)f(x)}{g(x)^2}$. \end{thm}
 \begin{proof}[Only the quotient rule]
 	$h(t)-h(x)=\frac{f(t)}{g(t)}-\frac{f(x)}{g(x)}=\frac{1}{g(t)g(x)}[(f(t)g(x)-f(x)g(x))-(f(x)g(t)-f(x)g(x))]$.\\
 	Then $\frac{h(t)-h(x)}{t-x}=\frac{1}{g(t)g(x)}\left[ \frac{f(t)-f(x)}{t-x}g(x)-f(x)\frac{g(t)-g(x)}{t-x} \right]$.
@@ -44,6 +43,61 @@ We consider $f:[a,b]\to \R$.
 \end{proof}
 \begin{remark}
 	By induction, $(f_1\cdots f_n)'=f_1'f_2\cdots f_n+f_1 f_2'f_3\cdots f_n+ \cdot f_1 f_2 \cdots f_n'$.
+	\begin{example}
+		For $n=2,3$,
+		$\dfrac{d}{dx}x^{n}=nx^{n-1}$ and we know this already for $n=0,1$.
+		For $n=-1,-2$, let $m=-n>0$. Then $\dfrac{d}{dx}x^{n}=\dfrac{d}{dx}\dfrac{1}{x^{m}}=\dfrac{(\dfrac{d}{dx}1)x^{m}-(\dfrac{d}{dx}x^{m})1}{(x^{m})^2}=\dfrac{0x^{m}-mx^{m-1}1}{x^{2m}}=-mx^{m-1}=nx^{n-1}$. Hence, $\forall_{n \in \Z}: \dfrac{d}{dx}^{n}=nx^{n-1}$.
+	\end{example}
 \end{remark}
 
+\begin{thm}[5][Chain Rule]
+	Suppose $f:[a,b]\to \R$, $f'(x)$ exists for some $x \in [a,b], f([a,b]) \subset I$, where $I$ is some interval in $\R$. Suppose $g: I\to \R$ and $g'(f(x))$ exists. Then $g \circ f$ is differentiable at $x$ and $(g\circ f)(x)'=g'(f(x))f'(x)$
+	\begin{proof}
+		Let $h(t)=(g\circ f)(t)=g(f(t))$ for $t \in [a,b]$. Fix $x \in [a,b]$ where $f'(x)$ exists. We know:
+		\begin{enumerate}
+			\item $f(t)-f(x)=(t-x)[f'(x)+u(t)]$ with $\lim_{t\to x}{u(t)}=0$.
+			\item With $y=f(x)$, $g(s)-g(y)=(s-y)(g'(y)+v(s))$ with $\lim_{s\to y}{v(s)}=0$
+		\end{enumerate}
+		As $\dfrac{h(t)-h(x)}{t-x}=\dfrac{g(f(t))-g(f(x))}{t-x}$. By (2), $\dfrac{g(f(t))-g(f(x))}{t-x}[g'f(x)+v(f(t))]$.
+		Let $t\to x$. Then $\text{ RHS } \to f'(x)[g'(f(x))+0]$ since $f(t)\to f(x)$ by continuity of $f$ at $x$. Therefore, $h'(x)=f'(x)g'(f(x))$.
+	\end{proof}
+	\begin{note}
+		Suppose you produce $f(t)$ meters of wire by time $t$; i.e., rate of wire production is $f'(t) \;m/x$. Also suppose you get $\$\; g(l)$ for $l$ meters of wire; rate of profit is $g'(l) \;\$/m$. Then the rate of earning by time $t$ is $g'(f(t))f'(t) \;\$/m$.
+	\end{note}
+\end{thm}
 
+\begin{example}
+	\begin{enumerate}
+		\item $\dfrac{d}{dx}e^{x^2}=2xe^{x^{2}}$
+		\item $f(x)=\begin{cases}
+				      x \sin{\dfrac{1}{x}} & \text{ if } x\neq 0 \\
+				      0                    & \text{ if } x=0
+			      \end{cases}$
+		      \begin{remark}
+			      \begin{enumerate}
+				      \item
+				            $f$ is continuous on $\R$, including at $x=0$.
+				            \begin{proof}
+					            $|f(x)|\le |x|$, so by the Squeeze theorem, $\lim_{x\to 0}{f(x)}=0=f(0)$.
+				            \end{proof}
+				      \item $f$ is differentiable on $x\neq 0$, but not differentiable at $x=0$.
+				            For $x\neq 0$, $f'(x)=\sin{\dfrac{1}{x}}+x(\cos{\dfrac{1}{x}})(\dfrac{-1}{x^2})=\sin{\dfrac{1}{x}}-\dfrac{1}{x}\cos{\dfrac{1}{x}}$.
+				            For $x=0$, $\dfrac{f(t)-f(0)}{t-0}=\dfrac{t \sin{\dfrac{1}{t}}}{t}=\sin{\dfrac{1}{t}}$, which does not converge. Therefore, $f$ not differentiable at $x=0$.
+			      \end{enumerate}
+		      \end{remark}
+		\item Let $f(x)= \begin{cases}
+				      x^2 \sin{\dfrac{1}{x}} & \text{ if } x\neq 0 \\
+				      0                      & x=0
+			      \end{cases}$.
+		      \begin{enumerate}
+			      \item
+			            $f$ is continuous in $\R$ including at $x=0$ ($\because |f(x)|\le |x^2|$).
+			      \item $f$ is differentiable in $\R$ including at $x=0$.
+			            \begin{proof}
+				            For $x\neq 0$, $f'(x)=2x \sin{\dfrac{1}{x}}+x^2(\cos{\dfrac{1}{x}})(\dfrac{-1}{x^2})=2x \sin{\dfrac{1}{x}}-\cos{\dfrac{1}{x}}$.
+				            For $x=0$, $\dfrac{f(t)-f(0)}{t-0}= \dfrac{t^2 \sin{\dfrac{1}{t}}}{t}=t \sin{\dfrac{1}{t}}\to 0$ as $t\to 0$. Hence, $f'(0)=0$.
+				            HOWEVER! $f'$ is not continuous at $x=0$, because $\lim_{x\to 0}{f'(x)}$ does not exist.
+			            \end{proof}
+		      \end{enumerate}
+	\end{enumerate}
+\end{example}

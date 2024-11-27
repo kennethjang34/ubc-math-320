@@ -4,7 +4,9 @@
 \makeatletter
 \usepackage{listings}
 \usepackage{xstring}
+\usepackage{framed}
 
+% \colorlet{shadecolor}{lightgray!25}
 
 % basics
 \usepackage[utf8]{inputenc}
@@ -422,3 +424,17 @@
 
 \newcommand*\eqreflocal[1]{\eqref{\currentprefix:#1}}
 
+% \patchcmd\thmtlo@chaptervspacehack
+% {\addtocontents{loe}{\protect\addvspace{10\p@}}}
+% {\addtocontents{loe}{\protect\thmlopatch@endchapter\protect\thmlopatch@chapter{\thechapter}}}
+% {}{}
+% \AtEndDocument{\addtocontents{loe}{\protect\thmlopatch@endchapter}}
+% \long\def\thmlopatch@chapter#1#2\thmlopatch@endchapter{%
+% 	\setbox\z@=\vbox{#2}%
+% 	\ifdim\ht\z@>\z@
+% 		\hbox{\bfseries\chaptername\ #1}\nobreak
+% 		#2
+% 		\addvspace{10\p@}
+% 	\fi
+% }
+% \def\thmlopatch@endchapter{}
