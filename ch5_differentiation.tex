@@ -1,10 +1,10 @@
 \chapter{Differentiation}
 We consider $f:[a,b]\to \R$.
 
-\begin{definition}
+\begin{definition*}
 	For $f: [a,b]\to \R$ and $x \in [a,b]$, let $f'(x)=\lim_{t\to x}{f(t)-f\frac{x}{t-x}}$ if limit exists.
 	Equivalently, $f(t)=f(x)+(t-x)[f'(x)+u(x,t)]$ with $\lim_{t\to x}{u(x,t)}=0$.
-\end{definition}
+\end{definition*}
 
 \begin{example}
 	\begin{enumerate}[label=(\alph*)]
@@ -101,3 +101,104 @@ We consider $f:[a,b]\to \R$.
 		      \end{enumerate}
 	\end{enumerate}
 \end{example}
+
+\begin{definition}
+	\label{def:5.7}
+	Let $X$ be a metric space, $f:X\to \R$. $f$ has a \textit{local} max at $x \in X$ if $\exists_{\delta > 0} \text{ s.t. } f(y)\ge f(x)$ for all $y \in N_{\delta}(x)$.
+\end{definition}
+\begin{thm}[8]
+	Let $f:[a,b]\to \R$. If $f$ has a local min or a local max at $x \in (a,b)$ and if $f'(x)$ exists, then $f'(x)=0$.
+	\begin{proof}[local min]
+		Suppose $f$ has a local min at $x$ and $f'(x)$ exists. Choose $\delta>0$ s.t. $N_{\delta}(x) \subset (a,b)$ and $f(t)\ge f(x)$ if $t \in (x-\delta,x+\delta)$.
+		For $x<t<x+\delta,$ $\dfrac{f(t)-f(x)}{t-x}\ge 0 (\because f(t)\ge f(x),t>x)$, so $f'(x)\ge 0$.
+		For $x-\delta<t<x$, $\dfrac{f(t)-f(x)}{t-x}\le 0 (\because f(t)-f(x)\ge 0, t<x)$, so $f'(x) \le 0$.
+		Hence, $f'(x)=0$.
+	\end{proof}
+
+
+	\begin{remark}
+		Note that the hypothesis of the theorem requires \textit{open} interval and existence $f'(x)$. If these conditions are not met, then $f'(x)=0$ doesn't have to be the case.
+		\begin{example}
+			\begin{enumerate}
+				\item $f(x)=|x|$ has a local min at $x=0$ but $f'(0)$ does not exist.
+				\item $f:[0,1]\to \R$ defined by $f(x)=x$ has a local max at $x=1$ and local min at $x=0$, but $f'(0)=f'(1)=1$.
+			\end{enumerate}
+		\end{example}
+	\end{remark}
+\end{thm}
+
+\begin{thm}[10][Mean-Value Theorem]
+	If $f:[a,b]\to \R$ is continuous and differentiable on $(a,b)$, then $\exists_{x \in (a,b)} \text{ s.t. } f(b)-f(a)=f'(x)(b-a)$.
+	\begin{proof}
+		\begin{tikzpicture}[scale=1.5]
+			% Define the function f(t)
+			\def\fa{0.5}
+			\def\fb{2.5}
+			\def\fc{1.5}
+			\def\fd{1.5}
+			\def\fe{1.5}
+			\def\ff{1.5}
+
+			% Draw the axes
+			\draw[->] (-0.5,0) -- (3.5,0) node[right] {$t$};
+			\draw[->] (0,-0.5) -- (0,3.5) node[above] {$y$};
+
+			% Draw the function y=f(t)
+			\draw[domain=0:3,smooth,variable=\t,blue] plot ({\t},{0.5*\t*\t - \t + 1});
+
+			% Points (a, f(a)) and (b, f(b))
+			\filldraw[black] (\fa,{0.5*\fa*\fa - \fa + 1}) circle (1pt) node[below left] {$(a, f(a))$};
+			\filldraw[black] (\fb,{0.5*\fb*\fb - \fb + 1}) circle (1pt) node[below right] {$(b, f(b))$};
+
+			% Draw the secant line from (a, f(a)) to (b, f(b))
+			\draw[red] (\fa,{0.5*\fa*\fa - \fa + 1}) -- (\fb,{0.5*\fb*\fb - \fb + 1});
+
+			% Calculate the slope of the secant line
+			\pgfmathsetmacro{\m}{(0.5*\fb*\fb - \fb + 1 - (0.5*\fa*\fa - \fa + 1))/(\fb - \fa)}
+
+			% Draw the tangent line at some point c
+			\pgfmathsetmacro{\fc}{1.5}
+			\pgfmathsetmacro{\fcx}{\fc}
+			\pgfmathsetmacro{\fcy}{0.5*\fc*\fc - \fc + 1}
+			\draw[domain=0:3,smooth,variable=\t,green] plot ({\t},{\m*(\t-\fcx) + \fcy});
+
+			% Point (c, f(c))
+			\filldraw[black] (\fc,{0.5*\fc*\fc - \fc + 1}) circle (1pt) node[below right] {$(x, f(x))$};
+
+			% Labels
+			\node at (1.5,2.5) {$y=f(t)$};
+			\node at (2.5,1.5) [red] {};
+			\node at (1,2) [green] {};
+		\end{tikzpicture}
+		Let $L: y=f(a)+m(t-a)$, where $m=\dfrac{y-f(a)}{t-a}=\dfrac{f(b)-f(a)}{b-a}$.
+		Subtract $L$ from the curve $y=f(t)$. Let $h(t)=f(t)-[f(a)+m(t-a)]$.
+		Then $h(a)=h(b)=0$. $h'(t)=f'(t)-m=f'(t)-\dfrac{f(b)-f(a)}{b-a}$.
+		Therefore, it suffices to find $x$ s.t. $h'(x)=0$.
+		$h$ is continuous and $[a,b]$ is compact, so $h$ attains its global max and global min on $[a,b]$.
+		If $h(t)=0$ for all $t \in [a,b]$ then $h'(t)=0$ for all $t \in [a,b]$ so any $x \in (a,b)$ will do.
+		Otherwise, $h$ attains its global max or global min at some $x \in (a,b)$. By Theorem~\ref{thm:5.8}, $h'(x)=0$.
+	\end{proof}
+\end{thm}
+
+\begin{thm}[11]
+	If $f$ is differentiable on $(a,b)$ then
+	\begin{enumerate}
+		\item  $f'(x)\ge 0$ for all $x \in (a,b)$ implies $f$ is monotone increasing.
+		\item  $f'(x)\le 0$ for all $x \in (a,b)$ implies $f$ is monotone decreasing.
+		\item  $f'(x)= 0$ for all $x \in (a,b)$ implies $f$ is constant.
+	\end{enumerate}
+	\begin{proof}[(a) only]
+		Suppose $f'(x)\ge 0$ for all $x \in (a,b)$.
+		For $a<x_1<x_2<b$, $\exists_{x \in (x_1,x_2)} \text{ s.t. } f(x_2)-f(x_1)=f'(x)(x_2-x_1)$ by Theorem~\ref{thm:5.10}.
+		As $f'(x)>=0, x_2\ge x_1$, $f(x_2)-f(x_1)\ge 0$.
+	\end{proof}
+\end{thm}
+
+\begin{definition}
+	$f^{(0)}=f, f^{(1)}=f', f^{(2)}=f'', f^{(3)}=f'''$ and so on.
+\end{definition}
+
+\begin{thm}[15][Taylor's Theorem]
+	Suppose $f:[a,b]\to \R$, $n \in \N$, and $f^{(n+1)}(x)$ exists for all $x \in (a,b)$.
+	Let $x, x_0 \in [a,b]$. Then $\exists_{c \in (x, x_0)} \text{ s.t. } f(x)=\sum_{k=0}^{n}{\underbrace{\dfrac{f^{(k)}(x_0)}{k!} (x-x_0)^{k}}_{P_n(x),\text{$n^{\text{th}}$Taylor polynomial of $f$ at $x_0$}}+\underbrace{\dfrac{f^{(n+1)}(c)}{(n+1)!}(x-x_0)^{n+1}}_{\text{Taylor Remainder}}}$.
+\end{thm}
