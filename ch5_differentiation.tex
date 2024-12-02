@@ -138,33 +138,25 @@ We consider $f:[a,b]\to \R$.
 			\def\fd{1.5}
 			\def\fe{1.5}
 			\def\ff{1.5}
-
 			% Draw the axes
 			\draw[->] (-0.5,0) -- (3.5,0) node[right] {$t$};
 			\draw[->] (0,-0.5) -- (0,3.5) node[above] {$y$};
-
 			% Draw the function y=f(t)
 			\draw[domain=0:3,smooth,variable=\t,blue] plot ({\t},{0.5*\t*\t - \t + 1});
-
 			% Points (a, f(a)) and (b, f(b))
 			\filldraw[black] (\fa,{0.5*\fa*\fa - \fa + 1}) circle (1pt) node[below left] {$(a, f(a))$};
 			\filldraw[black] (\fb,{0.5*\fb*\fb - \fb + 1}) circle (1pt) node[below right] {$(b, f(b))$};
-
 			% Draw the secant line from (a, f(a)) to (b, f(b))
 			\draw[red] (\fa,{0.5*\fa*\fa - \fa + 1}) -- (\fb,{0.5*\fb*\fb - \fb + 1});
-
 			% Calculate the slope of the secant line
 			\pgfmathsetmacro{\m}{(0.5*\fb*\fb - \fb + 1 - (0.5*\fa*\fa - \fa + 1))/(\fb - \fa)}
-
 			% Draw the tangent line at some point c
 			\pgfmathsetmacro{\fc}{1.5}
 			\pgfmathsetmacro{\fcx}{\fc}
 			\pgfmathsetmacro{\fcy}{0.5*\fc*\fc - \fc + 1}
 			\draw[domain=0:3,smooth,variable=\t,green] plot ({\t},{\m*(\t-\fcx) + \fcy});
-
 			% Point (c, f(c))
 			\filldraw[black] (\fc,{0.5*\fc*\fc - \fc + 1}) circle (1pt) node[below right] {$(x, f(x))$};
-
 			% Labels
 			\node at (1.5,2.5) {$y=f(t)$};
 			\node at (2.5,1.5) [red] {};
@@ -200,5 +192,74 @@ We consider $f:[a,b]\to \R$.
 
 \begin{thm}[15][Taylor's Theorem]
 	Suppose $f:[a,b]\to \R$, $n \in \N$, and $f^{(n+1)}(x)$ exists for all $x \in (a,b)$.
-	Let $x, x_0 \in [a,b]$. Then $\exists_{c \in (x, x_0)} \text{ s.t. } f(x)=\sum_{k=0}^{n}{\underbrace{\dfrac{f^{(k)}(x_0)}{k!} (x-x_0)^{k}}_{P_n(x),\text{$n^{\text{th}}$Taylor polynomial of $f$ at $x_0$}}+\underbrace{\dfrac{f^{(n+1)}(c)}{(n+1)!}(x-x_0)^{n+1}}_{\text{Taylor Remainder}}}$.
+	Let $x, x_0 \in [a,b]$. Then $\exists_{c \in (x, x_0)} \text{ s.t. }$
+	\[f(x)=\sum_{k=0}^{n}{\underbrace{\dfrac{f^{(k)}(x_0)}{k!} (x-x_0)^{k}}_{P_n(x),\text{$n^{\text{th}}$ Taylor polynomial of $f$ at $x_0$}}+\underbrace{\dfrac{f^{(n+1)}(c)}{(n+1)!}(x-x_0)^{n+1}}_{\text{Taylor Remainder}}}.\]
+	\begin{proof}
+		If $n=0$, the mean-value theorem guarantees existence of $c$.
+		For general $n$, $A \in \R$ by $R_n(x)=f(x)-Pn(x)=\dfrac{A}{(n+1)!}(x-x_0)^{n+1}$, where $A$ depends on $f,n,x,x_0$.
+		Claim: $A=f^{(n+1)}(c)$ for some $c$ between $x$ and $x_0$.\\
+		Define $g(t)=f(t)-P_{n}(t)-\dfrac{A}{(n+1)!}(t-x_0)^{n+1}$ for $t \in [a,b]$. Then $g(x_0)=0$.
+		$g(x)=f(x)-P_{n}(x)-\dfrac{A}{(n+1)!}(x-x_0)^{n+1}=0$ by the definition of $A$.
+		Also for $j=1,\ldots ,n$, then $P_{n}^{(j)}(x_0)=f^{(j)}(x_0)$, $\dfrac{\mathrm{d}^{j}}{\mathrm{d}x^{j}}(x-x_0)^{n+1} \mid_{x=x_0}=0$.
+		Hence, $g^{(j)}(x_0)=f^{(j)}(x_0)-P_{n}^{(j)}(x_0)-0=0$.
+		$g^{(n+1)}(t)=f^{(n+1)}(t)-0-A$.
+		We need to find $c$ s.t. $g^{(n+1)}(c)=0$.
+		$g(x)=g(x_0)=0 \implies \exists_{c_1 \in (\min\{x_0,x\},\max\{x_0,x\})} \text{ s.t. } g'(c_1)=0$.\\
+		$g'(x_0)=g'(c_1)=0 \implies \exists_{c_2 \in (\min\{x_0,x\},\max\{x_0,x\})} \text{ s.t. } g''(c_2)=0$.\\
+		$\vdots$\\
+		Finally, $\exists_{c_{n+1}=c} \text{ s.t. } g^{n+1}(c)=0$ and hence $f^{(n+1)}(c)=A$.
+	\end{proof}
 \end{thm}
+\begin{example}
+	(not in Rudin)
+	Does $\sum_{n=1}^{\infty}{\left( \sqrt{1+\dfrac{1}{n^2}}-1 \right)}$ converge or diverge?
+	Method 1:
+	\[
+		\sqrt[]{1+\dfrac{1}{n^2}}-1=\dfrac{\left(\sqrt[]{1+\dfrac{1}{n^2}}-1\right)\left(\sqrt[]{1+\dfrac{1}{n^2}}+1\right)}{\sqrt[]{1+\dfrac{1}{n^2}}+1}
+		=\dfrac{1+\dfrac{1}{n^2}-1}{\sqrt[]{1+\dfrac{1}{n^2}}+1}=\dfrac{1}{n^2}\dfrac{1}{\sqrt{1+\dfrac{1}{n^2}}+1}\le \dfrac{1}{n^2}
+		,\] so the series converges by the comparison test since $\sum{\dfrac{1}{n^2}}$ converges.\\
+	Method 2: Using Taylor's theorem. Let $f(x)=\sqrt[]{1+x}=(1+x)^{1/2}$. Then
+	\begin{align*}
+		f'(x)  & =\dfrac{1}{2}(1+x)^{-1/2}                                            \\
+		f''(x) & =\dfrac{1}{2}(-\dfrac{1}{2})(1+x)^{-3/2}  =-\dfrac{1}{4}(1+x)^{-3/2} \\
+		f(x)   & =P_1(x)+R_1(x)                                                       \\
+		       & =f(0)+\dfrac{f'(0)}{1!}(x-0)^{1}+\dfrac{f''(c)(x-0)^{2}}{2!}         \\
+		       & =1+\dfrac{1}{2}x+R_1(x)
+		.\end{align*}
+$|R_1(x)|\le (\dfrac{1}{2}\cdot \dfrac{1}{2}\cdot 1)\dfrac{1}{2!}x^{2}=\dfrac{1}{8}x^2$ for $x \in [0,1]$.
+	Therefore, $\sqrt[]{1+\dfrac{1}{n^2}}-1=f(\dfrac{1}{n^2})-1=\dfrac{1}{2}(\dfrac{1}{n^2})+R_1(\dfrac{1}{n^2})\le \dfrac{1}{2n^2}+\dfrac{1}{8}\dfrac{1}{n^{4}}$.
+	Since $\sum{\left(\dfrac{1}{2n^2} +\dfrac{1}{8n^{4}}\right)}$ converges, $\sum{\left(\sqrt[]{ 1+\dfrac{1}{n^2}}-1 \right)}$  converges by comparison test.
+\end{example}
+% \begin{example}
+% 	\begin{tikzpicture}[scale=1.5]
+% 		% Define the function f(t)
+% 		\def\fa{0.5}
+% 		\def\fb{2.5}
+% 		\def\fc{1.5}
+% 		\def\fd{1.5}
+% 		\def\fe{1.5}
+% 		\def\ff{1.5}
+% 		% Draw the axes
+% 		\draw[->] (-0.5,0) -- (3.5,0) node[right] {$t$};
+% 		\draw[->] (0,-0.5) -- (0,3.5) node[above] {$y$};
+% 		% Draw the function y=f(t)
+% 		\draw[domain=0:3,smooth,variable=\x,blue] plot ({\x},{0.5*\x*\x - \x + 1});
+% 		% Points (a, f(a)) and (b, f(b))
+% 		% \filldraw[black] (\fa,{0.5*\fa*\fa - \fa + 1}) circle (1pt) node[below left] {$(a, f(a))$};
+% 		% Draw the secant line from (a, f(a)) to (b, f(b))
+% 		% \draw[red] (\fa,{0.5*\fa*\fa - \fa + 1}) -- (\fb,{0.5*\fb*\fb - \fb + 1});
+% 		% Calculate the slope of the secant line
+% 		\pgfmathsetmacro{\m}{(0.5*\fb*\fb - \fb + 1 - (0.5*\fa*\fa - \fa + 1))/(\fb - \fa)}
+% 		% Draw the tangent line at some point c
+% 		\pgfmathsetmacro{\fc}{1.5}
+% 		\pgfmathsetmacro{\fcx}{\fc}
+% 		\pgfmathsetmacro{\fcy}{0.5*\fc*\fc - \fc + 1}
+% 		\draw[domain=0:3,smooth,variable=\x,green] plot ({\x},{\m*(\x-\fcx) + \fcy});
+% 		% Point (c, f(c))
+% 		\filldraw[black] (\fc,{0.5*\fc*\fc - \fc + 1}) circle (1pt) node[below right] {$(x_0, f(x_0))$};
+% 		% Labels
+% 		\node at (1.5,2.5) {$y=f(x)$};
+% 		\node at (2.5,1.5) [red] {};
+% 		\node at (1,2) [green] {};
+% 	\end{tikzpicture}
+% \end{example}
